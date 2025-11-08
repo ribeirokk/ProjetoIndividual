@@ -1,24 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 body {
-      font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 a {
-    font-size: 23px;
+    font-size: 20px;
+    display: inline-block;
     color: white;
     text-decoration: none;
-    transition: 0.3s;
-    
-}
+    transition: transform 0.3s, opacity 0.3s;
 
-a:hover {
-    opacity: 0.8;
-    transform: scale(1.10);
 }
 
 
@@ -29,37 +27,49 @@ a:hover {
     letter-spacing: 4px;
 }
 
+.logo a:hover {
+    opacity: 0.8;
+    transform: scale(1.10);
+}
+
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: black;
-  height: 9vh;
-  padding: 0 50px; 
-  border-bottom: solid 0.5px #ffffffaf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    height: 9vh;
+    padding: 0 50px;
+    border-bottom: solid 0.5px #ffffffaf;
 }
 
 .nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: center; 
+    list-style: none;
+    display: flex;
+    justify-content: center;
 }
 
 .nav-list li {
-  margin: 0 25px;
-  letter-spacing: 3px;
+    margin: 0 25px;
+    letter-spacing: 3px;
+}
+
+.nav-list a:hover {
+    opacity: 0.8;
+    transform: scale(1.10);
+    text-shadow: 0 0 12px white;
+    font-weight: bold;
 }
 
 .nav-action {
-  display: flex;
-  align-items: center;
-  gap: 10px; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .nav-img {
-  width: 65px;
-  height: auto;
-}  
+    width: 65px;
+    height: auto;
+}
 
 .nav-list li:last-child {
     display: flex;
@@ -68,147 +78,222 @@ nav {
 }
 
 .nav-button {
-    font-size: 23px;
+    font-size: 20px;
     font-family: Cormorant Garamond;
     background-color: rgb(51, 0, 0);
     color: rgb(255, 255, 255);
-    padding: 10px 40px;
+    padding: 8px 30px;
     border-radius: 10px;
     transition: 0.3s;
     border: none;
-}    
+}
 
 .nav-button:hover {
-    transform: scale(1.10);
+    transform: scale(1.05);
+    background-color: rgb(66, 6, 6);
+    
     box-shadow: 0 0 12px rgba(126, 0, 0, 0.5);
-}    
+}
 
 /* fim navbar */
 
 main {
-    background-color: black;    
-}        
+    background-color: black;
+}
 
 .home-section {
-  position: relative;    
-  min-height: 100vh;
-  overflow: hidden;
-}    
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
 
 .home-bg {
-  position: absolute;    
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .home-content {
-  position: relative;    
-  z-index: 2;
-  color: white;
-  text-align: center;
-  padding-top: 25vh;
-}   
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding-top: 25vh;
+}
 
 .home-content img {
-  margin-top: -70px; /* sobe a imagem */
+    width: 600px;
+    margin-top: -150px;
 }
 
-.home-bg,
-.gradiente{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;  
-  height: 100%;
-  object-fit: cover;
-}
-
-.gradiente{
-  z-index: 2;
-  pointer-events: none; 
-}
-
+/*seção mundo */
 .mundo-content {
-  position: relative;
-  z-index: 3;
-  color: white;
-  text-align: center;
-  padding-top: 20vh;
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+    padding-top: 20vh;
 }
 
 .mundo-section {
-  position: relative;    
-  min-height: 100vh;
-  overflow: hidden;
-}    
+    position: relative;
+    min-height: 100vh;
+    overflow: visible;
+}
 
 .mundo-bg {
-  position: absolute;    
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}    
-
-.mundo-content {
-  position: relative;    
-  z-index: 2;
-  color: white;
-  text-align: center;
-  padding-top: 25vh;
-}   
-
-.mundo-content img {
-  margin-top: -900px; 
-}
-
-.mundo-bg,
-.gradiente{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;  
-  height: 100%;
-  object-fit: cover;
-}
-
-.gradiente{
-  z-index: 2;
-  pointer-events: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .mundo-content {
-  position: relative;
-  z-index: 3;
-  color: white;
-  text-align: center;
-  padding-top: 20vh;
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding-top: 25vh;
 }
 
 .home-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30vh; 
-  background: linear-gradient(to top, black 0%, transparent 100%);
-  z-index: 2; 
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background:
+    linear-gradient(to top, black 0%, transparent 100%),
+    linear-gradient(to bottom, black 0%, transparent 50%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .mundo-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30vh; 
-  background: linear-gradient(to top, black 0%, transparent 100%);
-  z-index: 2; 
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+    linear-gradient(to top, black 0%, transparent 70%),
+    linear-gradient(to bottom, black 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.mundo-content p {
+    text-shadow: 0 0 3px black;
+}
+
+.mundo-texto {
+    background-color: black;
+    color: white;
+    padding: 150px 80px;
+    text-align: left;
+}
+
+/* carrossel */
+.carrossel {
+    margin-top: 100px;
+    position: relative;
+    /*background-image: url(/public/assets/img/skyrimIcon.png);*/
+    background-position: 50% 25%;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    padding: 60px 50px; 
+    
+}
+
+
+
+.carrossel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide img {
+    width: 60%;
+    max-height: 800px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.slide p {
+    font-size: 28px;
+    margin-top: 20px;
+    text-shadow: 0 0 5px black;
+}
+
+/* Botões */
+.prev,
+.next {
+    position: absolute;
+    top: 35%;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+    font-size: 40px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.prev:hover,
+.next:hover {
+    transform: scale(1.2);
+}
+
+.prev {
+    left: 50px;
+}
+
+.next {
+    right: 50px;
+}
+
+.carrossel hr {
+    display: flex;
+    width: 1000px;
+    justify-self: center;
+    
+}
+
+/* fim do mundo kkkkkkkkkkkkkk */
+
+.guerra-section {
+    background: black;
+    width: 100%;
+    color: white;
+    text-align: center;
+    
+}
+
+.guerra-section hr {
+    display: flex;
+    justify-self: center;
+    width: 700px;
+}
+
+
+.titulo {
+    font-size: 80px;
+    
 }
