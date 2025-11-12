@@ -9,6 +9,7 @@
 body {
     font-family: 'Cormorant Garamond', serif;
     overflow-x: hidden;
+    line-height: 50px;
 }
 
 a {
@@ -20,16 +21,54 @@ a {
 
 }
 
+/* Footer */
+
 footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: black;
-    height: 9vh;
-    padding: 0 50px;
-    border-bottom: solid 0.5px #ffffffaf;
+    background-color: #130500;
+    color: white;
 }
 
+.facecard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.facecard img {
+    width: 200px;
+}
+
+.facecard h1 {
+    font-size: 2em;
+}
+
+.facecard p {
+    font-size: 1.2em;
+    width: 450px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+}
+
+.redes-sociais img {
+    width: 60px;
+}
+
+#copyright {
+    display: flex;
+    margin: 0;
+    padding: 60px 0 20px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fim footer */
 
 /* home do header / navbar */
 .logo {
@@ -211,7 +250,6 @@ main {
 
 /* carrossel */
 .carrossel {
-    margin-top: 100px;
     position: relative;
     /*background-image: url(/public/assets/img/skyrimIcon.png);*/
     background-position: 50% 25%;
@@ -424,6 +462,10 @@ main {
     background: black;
 }
 
+.dragonborn-section p {
+    text-shadow: 0 0 2px black;
+}
+
 .dragonborn-bg {
     position: absolute;
     top: 0;
@@ -441,7 +483,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, black 0%, transparent 40%);
+    background: linear-gradient(to bottom, black 0%, transparent 20%);
     z-index: 1;
 }
 
@@ -460,4 +502,33 @@ main {
     display: flex;
     z-index: 0;
     margin-top: -70px;
+}
+
+.darkbimg {
+    width: 280px;
+    display: flex;
+    justify-content: start;
+    margin-top: 200px;
+    margin-left: 200px;
+
+}
+
+.compimg {
+    margin-top: 280px;
+    width: 230px;
+    display: flex;
+    justify-self: right;
+    margin-right: 200px;
+}
+
+.winterimg {
+    width: 400px;
+    display: flex;
+    justify-self: right;
+    margin-right: 100px;
+    margin-top: -390px;
+}
+
+.bold {
+    font-weight: bold;
 }
