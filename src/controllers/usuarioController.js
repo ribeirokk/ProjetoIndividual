@@ -25,11 +25,14 @@ function autenticar(req, res) {
                                 if (resultadoAquarios.length > 0) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios,
-                                        cpf: resultadoAutenticar[0]
+                                        idade: resultadoAutenticar[0].idade,
+                                        classe: resultadoAutenticar[0].classe,
+                                        lugar: resultadoAutenticar[0].lugar,
+                                        raca: resultadoAutenticar[0].raca,
+                                        magia: resultadoAutenticar[0].magia,
+                                        email: resultadoAutenticar[0].email,
+                                        senha: resultadoAutenticar[0].senha
                                     });
                                 } else {
                                     res.status(204).json({ aquarios: [] });
@@ -55,10 +58,13 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
+    var idade = req.body.idadeServer;
+    var classe = req.body.classeServer;
+    var lugar = req.body.lugarServer;
+    var raca = req.body.racaServer;
+    var magia = req.body.magiaServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
-    var cpf = req.body.cpfServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -67,14 +73,11 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Seu cpf está underfined!");} 
+    }
         else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa, cpf)
+        usuarioModel.cadastrar(nome, idade, classe, lugar, raca, magia, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

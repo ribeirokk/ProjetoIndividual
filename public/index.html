@@ -5,11 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Elder Scrolls</title>
-  <link rel="stylesheet" href="/public/css/estilo.css">
-  <link rel="icon" href="/public/assets/img/skyrimIcon.png" />
+  <link rel="stylesheet" href="/public/css/estilo.css"/>
 </head>
 
-<body>
+<body>  
 
   <header>
     <nav>
@@ -25,8 +24,11 @@
 
       <div class="nav-action">
         <img class="nav-img" src="/public/assets/img/imperioIcon.png" alt="icon imperial">
-        <button class="nav-button">Escolha Seu Lado</button>
-        <img class="nav-img" src="/public/assets/img/stormcloakIcon.png" alt="icon stormcloak">
+    <a href="cadastro.html" style="display: flex;">
+      <button class="nav-button">Escolha Seu Lado</button>
+      <img class="nav-img" src="/public/assets/img/stormcloakIcon.png" alt="icon stormcloak">
+    </a>
+      
       </div>
     </nav>
   </header>
@@ -420,6 +422,7 @@
 </html>
 
 <script>
+
   var carrossel = document.querySelector('#carrossel');
   var slides = document.querySelectorAll('.slide');
   var i = 0;
