@@ -10,18 +10,29 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/cadastro.css"/>
-  <link rel="stylesheet" href="./css/estilo.css"/>
-  <link rel="icon" href="./assets/img/skyrimIcon.png"/>
+  <link rel="stylesheet" href="./css/cadastro.css" />
+  <link rel="icon" href="./assets/img/skyrimIcon.png" />
 </head>
 
 <body onload="listar()">
   <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">Quem é você</h1>
-    </div>
-  </div>
+  <header>
+    <nav>
+      <a class="logo" href="/">Skyrim</a>
+
+      <ul class="nav-list">
+      </ul>
+
+      <div class="nav-action">
+        <img class="nav-img" src="./assets/img/imperioIcon.png" alt="icon imperial">
+        <a href="login.html" style="display: flex;">
+          <button class="nav-button">Já Luta Por Skyrim?</button>
+          <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
+        </a>
+
+      </div>
+    </nav>
+  </header>
   <!--header fim-->
 
   <div class="login">
@@ -30,81 +41,114 @@
         <span id="mensagem_erro"></span>
       </div>
     </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Defina sua história</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
+    <div class="formulario">
+      <h1>Quem é Você?</h1>
+      <h2>Defina sua história</h2>
 
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>Idade:</span>
-            <input id="idade_input" type="text" placeholder="Insira sua idade aqui" />
-          </div>
-          <div class="campo">
-            <span>Classe:</span>
-            <input id="classe_input" type="text" placeholder="Sua Classe" />
-          </div>
-          <div class="campo">
-            <span>Cidade/Vila:</span>
-            <input id="lugar_input" type="text" placeholder="Seu lugar" />
-          </div>
-          <div class="campo">
-            <span>Raça:</span>
-            <input id="raca_input" type="text" placeholder="Sua Raça" />
-          </div>
-          <div class="campo">
-            <span>Sua Escola de Magia:</span>
-            <input id="magia_input" type="text" placeholder="Informe a qual escola de magia você pertence" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
-        <div id="div_erros_login"></div>
+      <div class="campo">
+        <span>Nome:</span>
+        <input id="nome_input" type="text" placeholder="Seu nome" />
       </div>
+
+      <div class="campo">
+        <span>Idade:</span>
+        <input id="idade_input" type="text" placeholder="Insira sua idade aqui" />
+      </div>
+
+      <div class="campo">
+        <span>Classe:</span>
+        <input id="classe_input" type="text" placeholder="Sua Classe" />
+      </div>
+
+      <div class="campo">
+        <span>Cidade/Vila:</span>
+        <input id="lugar_input" type="text" placeholder="Seu lugar" />
+      </div>
+
+      <div class="campo">
+        <span>Gênero:</span>
+        <select id="genero_select">
+          <option selected disabled value="#">Selecione seu Gênero</option>
+          <option value="homem">Homem</option>
+          <option value="mulher">Mulher</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+      <div class="campo">
+        <span>Raça:</span>
+        <select id="raca_select" onchange="trocar()">
+          <option selected disabled value="#">Selecione uma raça</option>
+          <option value="dunmer">Dunmer</option>
+          <option value="altamer">Elfo Negro</option>
+          <option value="bosmer">Elfo da Floresta</option>
+          <option value="orc">Orc</option>
+          <option value="khajiit">Khajiit</option>
+          <option value="argoniano">Argoniano</option>
+          <option value="imperial">Imperial</option>
+          <option value="nordico">Nórdico</option>
+          <option value="redguard">Redguard</option>
+          <option value="bretao">Bretão</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <span>Sua Escola de Magia:</span>
+        <select id="magia_select">
+          <option selected disabled value="#">Selecione uma escola</option>
+          <option value="conjuracao">Conjuração</option>
+          <option value="ilusao">Ilusão</option>
+          <option value="destruicao">Destruição</option>
+          <option value="restauracao">Restauração</option>
+          <option value="alteracao">Alteração</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <span>E-mail:</span>
+        <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+      </div>
+
+      <div class="campo">
+        <span>Senha:</span>
+        <input id="senha_input" type="password" placeholder="******" />
+      </div>
+
+      <div class="campo">
+        <span>Confirmação da Senha:</span>
+        <input id="confirmacao_senha_input" type="password" placeholder="******" />
+      </div>
+      <div class="personagem">
+        <img id="personagemImg" src="./assets/img/cadastro/cicero.jpg" alt="">
+      </div>
+      <button class="botao" onclick="cadastrar()">Cadastrar</button>
+      <div id="div_erros_login"></div>
     </div>
+
+    <div class="hadvar">
+    </div>
+
   </div>
 
+
   <!--footer inicio-->
-    <footer>
-      <div class="facecard">
-        <img src="./assets/img/face.png" alt="" />
-        <h1>Luiz Vittor Marques Ribeiro</h1>
-        <p>
-          Responsável pelo desenvolvimento frontend e backend do site como projeto
-          individual na disciplina de PI na SPTECH.
-        </p>
-      </div>
+  <footer>
+    <div class="facecard">
+      <img src="./assets/img/face.png" alt="" />
+      <h1>Luiz Vittor Marques Ribeiro</h1>
+      <p>
+        Responsável pelo desenvolvimento frontend e backend do site como projeto
+        individual na disciplina de PI na SPTECH.
+      </p>
+    </div>
 
-      <div class="redes-sociais">
-        <img src="./assets/img/linkedin.png" alt="">
-        <img src="./assets/img/github.webp" alt="">
-        <img src="./assets/img/github.webp" alt="">
-      </div>
+    <div class="redes-sociais">
+      <img src="./assets/img/linkedin.png" alt="">
+      <img src="./assets/img/github.webp" alt="">
+      <img src="./assets/img/github.webp" alt="">
+    </div>
 
-      <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
-    </footer>
+    <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
+  </footer>
 
   <!--footer fim-->
 </body>
@@ -112,9 +156,6 @@
 </html>
 
 <script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
 
   function cadastrar() {
     // aguardar();
@@ -125,54 +166,33 @@
     var idadeVar = idade_input.value;
     var classeVar = classe_input.value;
     var lugarVar = lugar_input.value;
-    var racaVar = raca_input.value;
-    var magiaVar = magia_input.value;
+    var generoVar = genero_select.value;
+    var racaVar = raca_select.value;
+    var magiaVar = magia_select.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-    // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       idadeVar == "" ||
       classeVar == "" ||
       lugarVar == "" ||
+      generoVar == "" ||
       racaVar == "" ||
       magiaVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+      document.querySelector(".alerta_erro").style.display = "flex";
+      mensagem_erro.innerHTML = "Preencha todos os campos!";
+      setTimeout(sumirMensagem, 4000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
     }
 
-    if (nomeVar.length >1 ) {
-      
-      
-      // Verificando se o código de ativação é de alguma empresa cadastrada
-      for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-        if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-          idEmpresaVincular = listaEmpresasCadastradas[i].id
-          console.log("Código de ativação válido.");
-          break;
-        } else {
-          cardErro.style.display = "block";
-          mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-          finalizarAguardar();
-        }
-      }
-    } else {
-      alert('Preencha todos os dados corretamente!');
-      return;
-    }
-      
+
+
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -187,6 +207,7 @@
         idadeServer: idadeVar,
         classeServer: classeVar,
         lugarServer: lugarVar,
+        generoServer: generoVar,
         racaServer: racaVar,
         magiaServer: magiaVar,
         emailServer: emailVar,
@@ -197,7 +218,8 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+          document.querySelector(".alerta_erro").style.display = "flex";
+
 
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
@@ -207,40 +229,42 @@
           }, "2000");
 
           limparFormulario();
-          finalizarAguardar();
+
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
 
     return false;
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+  function sumirMensagem() {
+    document.querySelector(".alerta_erro").style.display = "none";
   }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
+
+  function trocar() {
+    var raca = raca_select.value;
+    var personagemImg = document.getElementById("personagemImg");
+
+    var imagens = {
+      dunmer: "./assets/img/cadastro/highelf.jpg",
+      altamer: "./assets/img/cadastro/darkelf.jpg",
+      bosmer: "./assets/img/cadastro/woodelf.jpg",
+      orc: "./assets/img/cadastro/orc.jpg",
+      khajiit: "./assets/img/cadastro/khajiit.jpg",
+      argoniano: "./assets/img/cadastro/argonian.jpg",
+      imperial: "./assets/img/cadastro/imperial.jpg",
+      nordico: "./assets/img/cadastro/nord.jpg",
+      redguard: "./assets/img/cadastro/redguard.jpg",
+      bretao: "./assets/img/cadastro/breton.jpg"
+    };
+
+    if (imagens[raca]) {
+      personagemImg.src = imagens[raca];
+    }
   }
 </script>

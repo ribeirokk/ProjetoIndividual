@@ -92,6 +92,15 @@ nav {
     border-bottom: solid 0.5px #ffffffaf;
 }
 
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    align-self: center;
+    height: 40px;
+}
+
 .nav-list {
     list-style: none;
     display: flex;
@@ -532,3 +541,4 @@ main {
 .bold {
     font-weight: bold;
 }
+
