@@ -252,9 +252,10 @@ footer {
     height: 40px;
     border-radius: 8px;
     font-size: 20px;
-
+    background-color: #252121dd;
     color: #e6d6b7;
-
+    border: 2px solid #3d3431;
+    box-shadow: 0 0 10px #0007;
     display: flex;
     justify-content: center;
     align-items: center;

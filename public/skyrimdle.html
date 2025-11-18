@@ -545,30 +545,34 @@
 
     function validar() {
         var tentativa = input_personagem.value.toLowerCase();
-        var msg = '';
+        var msg = ''; 
 
         if (tentativa == '') {
             mensagem.innerHTML = '';
-            return;
-        }
-        personagens.forEach(function (personagemAtual) {
-            var nome = personagemAtual.nome.toLowerCase();
+        } else {
 
-            if (nome.startsWith(tentativa)) {
-                msg += `
-            <div class="sugestao" onclick="preencher('${personagemAtual.nome}')">
-                ${personagemAtual.nome}
-            </div>
-        `;
+            
+            for (var i = 0; i < personagens.length; i++) {
+                var personagemAtual = personagens[i];
+                var nome = personagemAtual.nome.toLowerCase();
+                
+                if (nome.startsWith(tentativa)) {
+                    msg += `
+                    <div class="sugestao" onclick="preencher('${personagemAtual.nome}')">
+                        ${personagemAtual.nome}
+                        </div>
+                        `;
+                    }
+                }
+                
             }
-        });
-        mensagem.innerHTML = msg;
+        mensagem.innerHTML = msg; 
     }
+
     function preencher(nome) {
         input_personagem.value = nome;
         mensagem.innerHTML = "";
     }
-
     function tentar() {
         var tentativa = input_personagem.value.toLowerCase();
         tentativas++;
