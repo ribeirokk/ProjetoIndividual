@@ -143,10 +143,9 @@ footer {
 
 /* Fim footer */
 
-/* Container principal com background */
 .container {
     width: 100%;
-    min-height: calc(100vh - 9vh); /* tela inteira menos navbar */
+    min-height: calc(100vh - 9vh); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,7 +156,7 @@ footer {
     padding: 50px 0;
 }
 
-/* Formulário */
+
 .formulario {
     display: flex;
     flex-direction: column;
@@ -204,7 +203,6 @@ footer {
     color: black;
 }
 
-/* Botão de login */
 .botao {
     width: 100%;
     padding: 10px;
@@ -224,8 +222,6 @@ footer {
     transform: scale(1.05);
 }
 
-/* inicio popup */
-/* Fundo escuro por trás do popup */
 .alerta_erro {
   position: fixed;
   top: 0;
@@ -251,5 +247,39 @@ footer {
   text-align: center;
   box-shadow: 0 0 20px #000;
 }
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
 
-/* fim popup*/  
+.popup-content {
+    background: #1e1e1e;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    border: 2px solid #c9a45c;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: #c9a45c;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background: #e2c078;
+}

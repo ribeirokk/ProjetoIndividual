@@ -44,59 +44,60 @@
             <h2>De Volta Ao Caminho Dos Heróis.</h2>
             <div class="campo">
                 <span>E-mail:</span>
-                <input id="email_input" type="text" placeholder="Login">
+                <input id="input_email" type="text" placeholder="Login">
             </div>
             <div class="campo">
                 <span>Senha:</span>
-                <input id="senha_input" type="password" placeholder="******">
+                <input id="input_senha" type="password" placeholder="******">
             </div>
             <button class="botao" onclick="entrar()">Entrar</button>
         </div>
     </div>
 
-<!--footer inicio-->
-<footer>
-    <div class="facecard">
-        <img src="./assets/img/face.png" alt="" />
-        <h1>Luiz Vittor Marques Ribeiro</h1>
-        <p>
-            Responsável pelo desenvolvimento frontend e backend do site como projeto
-            individual na disciplina de PI na SPTECH.
-        </p>
-    </div>
+    <!--footer inicio-->
+    <footer>
+        <div class="facecard">
+            <img src="./assets/img/face.png" alt="" />
+            <h1>Luiz Vittor Marques Ribeiro</h1>
+            <p>
+                Responsável pelo desenvolvimento frontend e backend do site como projeto
+                individual na disciplina de PI na SPTECH.
+            </p>
+        </div>
 
-    <div class="redes-sociais">
-        <img src="./assets/img/linkedin.png" alt="">
-        <img src="./assets/img/github.webp" alt="">
-        <img src="./assets/img/github.webp" alt="">
-    </div>
+        <div class="redes-sociais">
+            <img src="./assets/img/linkedin.png" alt="">
+            <img src="./assets/img/github.webp" alt="">
+            <img src="./assets/img/github.webp" alt="">
+        </div>
 
-    <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
-</footer>
+        <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
+    </footer>
 
-<!--footer fim-->
 
-</body>
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h2 id="popup-msg"></h2>
+            <button onclick="fecharPopup()">OK</button>
+        </div>
+
+
+    <!--footer fim-->
+
+</body> 
 
 </html>
 
 <script>
-
-
     function entrar() {
-        aguardar();
-
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            abrirPopup('Mensagem de erro para todos os campos em branco');
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
+        } else {
+            abrirPopup('Logando...')
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -120,35 +121,37 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
+
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
+                        window.location = "skyrimdle.html";
+                    }, 1000);
                 });
 
             } else {
-
+                abrirPopup('Erro ao fazer login'); 
                 console.log("Houve um erro ao tentar realizar o login!");
-
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
-
         }).catch(function (erro) {
             console.log(erro);
+            abrirPopup('Erro de rede: verifique sua conexão.');
         })
 
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
+    function abrirPopup(msg) {
+        document.getElementById("popup-msg").innerHTML = msg;
+        document.getElementById("popup").style.display = "flex";
     }
 
+    function fecharPopup() {
+        document.getElementById("popup").style.display = "none";
+    }
 </script>

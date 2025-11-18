@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../public/assets/img/knight.ico" type="image/x-icon" />
+    <title>Skyrim | Guesser</title>
+
+    <link rel="stylesheet" href="./css/dle.css">
+
+    <!-- Chamando pastas externas -->
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <a class="logo" href="/">Skyrim</a>
+
+            <ul class="nav-list">
+            </ul>
+
+            <div class="nav-action">
+                <img class="nav-img" src="./assets/img/imperioIcon.png" alt="icon imperial">
+                <a href="index.htmlx" style="display: flex;">
+                    <button class="nav-button">Voltar ao Início</button>
+                    <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
+                </a>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Fim header -->
+
+    <div class="dle">
+
+        <div class="container">
+
+            <div class="dle-logo"><img src="./assets/img/tela-dle.png" alt=""></div>
+
+
+            <div id="botao_quiz" class="botao-quiz">
+
+
+                <h1></h1>
+                <div class="botoes">
+                    <button onclick="jogar()">Jogar</button>
+                    <a href="estatisticas.html"><button>Seus dados</button></a>
+                </div>
+
+            </div>
+
+            <div id="quiz" class="quiz" style="display: none;">
+
+                <h2>Adivinhe o personagem!</h2>
+
+
+                <div class="input-area">
+                    <input oninput="validar()" type="text" id="input_personagem"
+                        placeholder="Escreva o nome do personagem">
+                    <button onclick="tentar()" class="btn-play">➤</button>
+                    <p id="mensagem"></p>
+                </div>
+
+                <div class="respostas">
+                    <div class="card">questline</div>
+                    <div class="card">Espécie</div>
+                    <div class="card">Raça</div>
+                    <div class="card">Localização</div>
+                    <div class="card">Guilda</div>
+                    <div class="card">Situacao</div>
+                    <div class="card">Classe</div>
+                </div>
+
+                <div id="linha" class="respostas" style="display:none;">
+
+                    <div class="card" id="questline"></div>
+                    <div class="card" id="genero"></div>
+                    <div class="card" id="raca"></div>
+                    <div class="card" id="localizacao"></div>
+                    <div class="card" id="guilda"></div>
+                    <div class="card" id="situacao"></div>
+                    <div class="card" id="classe"></div>
+
+                </div>
+
+                <div class="historico" id="historico"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="facecard">
+            <img src="./assets/img/face.png" alt="" />
+            <h1>Luiz Vittor Marques Ribeiro</h1>
+            <p>
+                Responsável pelo desenvolvimento frontend e backend do site como projeto
+                individual na disciplina de PI na SPTECH.
+            </p>
+        </div>
+
+        <div class="redes-sociais">
+            <img src="./assets/img/linkedin.png" alt="">
+            <img src="./assets/img/github.webp" alt="">
+            <img src="./assets/img/github.webp" alt="">
+        </div>
+
+        <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
+    </footer>
+
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h2 id="popup-msg"></h2>
+            <button onclick="fecharPopup()">OK</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+    var tentativas = 0;
+    var ganhou = false;
+
+    var personagens = [
+        {
+            "nome": "Alduin",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Dragão",
+            "localizacao": "Sovngarde",
+            "guilda": "Nenhuma",
+            "situacao": "Vivo",
+            "classe": "Dragão",
+            "img": "./assets/img/personagens/alduin.jpg"
+        },
+        {
+            "nome": "Paarthurnax",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Dragão",
+            "localizacao": "Garganta do Mundo.",
+            "guilda": "Greybeards",
+            "situacao": "Vivo",
+            "classe": "Dragão",
+            "img": "./assets/img/personagens/paarthurnax.jpg"
+        },
+        {
+            "nome": "Esbern",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Riften",
+            "guilda": "Blades",
+            "situacao": "Vivo",
+            "classe": "Spellsword",
+            "img": "./assets/img/personagens/esbern.jpg"
+        },
+        {
+            "nome": "Delphine",
+            "questline": "Principal",
+            "genero": "Mulher",
+            "raca": "Imperial",
+            "localizacao": "Riverwood",
+            "guilda": "Blades",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/delphine.jpg"
+        },
+        {
+            "nome": "Ulfric Stormcloak",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Windhelm",
+            "guilda": "Stormcloak",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/ulfric.jpg"
+        },
+        {
+            "nome": "General Tulius",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Solitude",
+            "guilda": "Imperio",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/tulius.jpg"
+        },
+        {
+            "nome": "Jarl Balgruuf, o Grande",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Whiterun",
+            "guilda": "Imperio",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/balgruuf.jpg"
+        },
+        {
+            "nome": "Kodlak Whitemane",
+            "questline": "Principal",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Whiterun",
+            "guilda": "Companions",
+            "situacao": "Morto",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/kodlak.jpg"
+        },
+        {
+            "nome": "Aela",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Nórdico",
+            "localizacao": "Whiterun",
+            "guilda": "Companions",
+            "situacao": "Vivo",
+            "classe": "Arqueiro",
+            "img": "./assets/img/personagens/aela.jpg"
+        },
+        {
+            "nome": "Farkas",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Whiterun",
+            "guilda": "Companions",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/farkas.jpg"
+        },
+        {
+            "nome": "Vilkas",   
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Whiterun",
+            "guilda": "Companions",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/vilkas.jpg"
+        },
+        {
+            "nome": "Skjor",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Whiterun",
+            "guilda": "Companions",
+            "situacao": "Morto",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/skjor.jpg"
+        },
+        {
+            "nome": "Astrid",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Nórdico",
+            "localizacao": "Falkreath, Dawnstar",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Morto",
+            "classe": "Assassino",
+            "img": "./assets/img/personagens/astrid.jpg"
+        },
+        {
+            "nome": "Cicero",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Falkreath, Dawnstar",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Vivo",
+            "classe": "Assassino",
+            "img": "./assets/img/personagens/cicero.jpg"
+        },
+        {
+            "nome": "Babette",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Breton",
+            "localizacao": "Falkreath, Dawnstar",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Vivo",
+            "classe": "Alquimista",
+            "img": "./assets/img/personagens/babette.jpg"
+        },
+        {
+            "nome": "Nazir",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "RedGuard",
+            "localizacao": "Falkreath, Dawnstar",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Vivo",
+            "classe": "Assassino",
+            "img": "./assets/img/personagens/nazir.jpg"
+        },
+        {
+            "nome": "Gabriella",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Elfo Negro",
+            "localizacao": "Falkreath, Dawnstar",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Vivo",
+            "classe": "Assassina",
+            "img": "./assets/img/personagens/gabriella.jpg"
+        },
+        {
+            "nome": "Festus Krex",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Falkreath",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Morto",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/krex.jpg"
+        },
+        {
+            "nome": "Arnbjorn",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Falkreath",
+            "guilda": "Dark Brotherhood",
+            "situacao": "Morto",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/arnbjorn.jpg"
+        },
+        {
+            "nome": "Brynjolf",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Ladino",
+            "img": "./assets/img/personagens/brynjolf.jpg"
+        },
+        {
+            "nome": "Mercer Frey",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Morto",
+            "classe": "Ladino",
+            "img": "./assets/img/personagens/frey.jpg"
+        },
+        {
+            "nome": "Karliah",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Elfo Negro",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Nightblade",
+            "img": "./assets/img/personagens/karliah.jpg"
+        },
+        {
+            "nome": "Vex",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Imperial",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Ladino",
+            "img": "./assets/img/personagens/vex.jpg"
+        },
+        {
+            "nome": "Delvin Mallory",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Imperial",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Ladino",
+            "img": "./assets/img/personagens/delvinmallory.jpg"
+        },
+        {
+            "nome": "Tonilia",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Elfo Negro ",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Ladino",
+            "img": "./assets/img/personagens/tonilia.jpg"
+        },
+        {
+            "nome": "Dirge",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Guerreiro",
+            "img": "./assets/img/personagens/dirge.jpg"
+        },
+        {
+            "nome": "Rune",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Riften",
+            "guilda": "Thieves Guild",
+            "situacao": "Vivo",
+            "classe": "Ladino",
+            "img": "./assets/img/personagens/rune.jpg"
+        },
+        {
+            "nome": "Mirabelle Ervine",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Breton",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/mirabelle.jpg"
+        },
+        {
+            "nome": "Savos Aren",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Altamer",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Morto",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/savos.jpg"
+        },
+        {
+            "nome": "Tolfdir",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/tolfdir.jpg"
+        },
+        {
+            "nome": "Faralda",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Altamer",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/balgruuf.jpg"
+        },
+        {
+            "nome": "Nelacar",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Altamer",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Morto",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/nelacar.jpg"
+        },
+        {
+            "nome": "J’zargo",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Khajiit",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/jzargo.jpg"
+        },
+        {
+            "nome": "J’zargo",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Khajiit",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/jzargo.jpg"
+        },
+        {
+            "nome": "Onmund",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Nórdico",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/onmund.jpg"
+        },
+        {
+            "nome": "Brelyna Maryon",
+            "questline": "Secundária",
+            "genero": "Mulher",
+            "raca": "Elfo Negro",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold",
+            "situacao": "Vivo",
+            "classe": "Mistica",
+            "img": "./assets/img/personagens/brelyna.jpg"
+        },
+        {
+            "nome": "Ancano",
+            "questline": "Secundária",
+            "genero": "Homem",
+            "raca": "Altamer",
+            "localizacao": "Winterhold",
+            "guilda": "College of Winterhold, Thalmor",
+            "situacao": "Morto",
+            "classe": "Mago",
+            "img": "./assets/img/personagens/ancano.jpg"
+        }
+
+
+    ];
+
+    var personagem = null;
+
+    function validar() {
+        var tentativa = input_personagem.value.toLowerCase();
+        var msg = '';
+
+        if (tentativa == '') {
+            mensagem.innerHTML = '';
+            return;
+        }
+
+        personagens.forEach(p => {
+            var nome = p.nome.toLowerCase();
+            if (nome.startsWith(tentativa)) {
+                msg += `<div class="sugestao" onclick="preencher('${p.nome}')">${p.nome}</div>`;
+            }
+        });
+
+        mensagem.innerHTML = msg;
+    }
+    function preencher(nome) {
+        input_personagem.value = nome;
+        mensagem.innerHTML = ""; 
+        input_personagem.focus();
+    }
+
+    function tentar() {
+        var tentativa = input_personagem.value.toLowerCase();
+        tentativas++;
+
+        var comparar = personagens.find(p => p.nome.toLowerCase() == tentativa);
+
+        if (!comparar) {
+            alert("Personagem inválido!");
+            return;
+        }
+
+        if (comparar.nome == personagem.nome) {
+            ganhou = true;
+        }
+        
+        function compararCampo(campo, elemento) {
+            elemento.innerHTML = comparar[campo];
+
+            if (comparar[campo] == personagem[campo]) {
+                elemento.style.backgroundColor = "green";
+            } else if (comparar[campo].includes(personagem[campo])){
+                elemento.style.backgroundColor = "orange";
+            } else {
+                elemento.style.backgroundColor = "red";
+            }
+        }
+
+        compararCampo("questline", questline);
+        compararCampo("genero", genero);
+        compararCampo("raca", raca);
+        compararCampo("localizacao", localizacao);
+        compararCampo("guilda", guilda);
+        compararCampo("situacao", situacao);
+        compararCampo("classe", classe);
+
+        // Registrar no histórico
+        historico.innerHTML =
+            `<div class="tentativa-linha">
+        
+        <div class="img-box">
+            <img src="${comparar.img}" alt="${comparar.nome}">
+        </div>
+
+        <div class="respostas">
+            <div class="card" style="background-color:${questline.style.backgroundColor}">${questline.innerHTML}</div>
+            <div class="card" style="background-color:${genero.style.backgroundColor}">${genero.innerHTML}</div>
+            <div class="card" style="background-color:${raca.style.backgroundColor}">${raca.innerHTML}</div>
+            <div class="card" style="background-color:${localizacao.style.backgroundColor}">${localizacao.innerHTML}</div>
+            <div class="card" style="background-color:${guilda.style.backgroundColor}">${guilda.innerHTML}</div>
+            <div class="card" style="background-color:${situacao.style.backgroundColor}">${situacao.innerHTML}</div>
+            <div class="card" style="background-color:${classe.style.backgroundColor}">${classe.innerHTML}</div>
+        </div>
+
+    </div>` + historico.innerHTML;
+
+
+        if (ganhou) {
+            zerarTentativas();
+            abrirPopup(`
+        Parabéns! Você adivinhou <b>${personagem.nome}</b> em ${tentativas} tentativas! <br>
+        <img src="${personagem.img}" style="width:120px; margin-top:10px;">
+    `);
+
+            tentativas = 0;
+            historico.innerHTML = '';
+        }
+
+
+        input_personagem.focus();
+    }
+
+    function jogar() {
+        personagem = personagens[Math.floor(Math.random() * personagens.length)];
+        quiz.style.display = "block";
+        botao_quiz.style.display = "none";
+    }
+
+    function desistir() {
+        quiz.style.display = "none";
+        botao_quiz.style.display = "block";
+    }
+
+    function zerarTentativas() {
+        fetch("/quiz/zerarTentativas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                tentativasServer: tentativas
+            }),
+        }).catch(err => console.log(err));
+    }
+
+    function abrirPopup(msg) {
+        document.getElementById("popup-msg").innerHTML = msg;
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function fecharPopup() {
+        document.getElementById("popup").style.display = "none";
+
+        // Reinicia jogo
+        botao_quiz.style.display = "flex";
+        quiz.style.display = "none";
+        tentativas = 0;
+        historico.innerHTML = "";
+        ganhou = false;
+    }
+</script>

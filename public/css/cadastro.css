@@ -279,8 +279,6 @@ select option {
     object-fit: cover;
 }
 
-/* inicio popup */
-/* Fundo escuro por trás do popup */
 .alerta_erro {
   position: fixed;
   top: 0;

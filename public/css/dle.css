@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+}
+
+a {
+    font-size: 20px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s, opacity 0.3s;
+
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* home do header / navbar */
+.logo {
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    height: 9vh;
+    padding: 0 50px;
+    border-bottom: solid 0.5px #ffffffaf;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-img {
+    width: 65px;
+    height: auto;
+}
+
+.nav-list li:last-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    align-self: center;
+    height: 40px;
+    font-size: 20px;
+    font-family: Cormorant Garamond;
+    background-color: rgb(51, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: 0.3s;
+    border: none;
+}
+
+.nav-button:hover {
+    transform: scale(1.05);
+    background-color: rgb(66, 6, 6);
+    
+    box-shadow: 0 0 12px rgba(126, 0, 0, 0.5);
+}
+
+/* fim navbar */
+/* Footer */
+
+footer {
+    background-color: #130500;
+    color: white;
+}
+
+.facecard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.facecard img {
+    width: 200px;
+}
+
+.facecard h1 {
+    font-size: 2em;
+}
+
+.facecard p {
+    font-size: 1.2em;
+    width: 450px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+}
+
+.redes-sociais img {
+    width: 60px;
+}
+
+#copyright {
+    display: flex;
+    margin: 0;
+    padding: 60px 0 20px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fim footer */
+
+
+
+.dle {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 50px;  
+    height: 92vh;
+    background-size: cover;
+    background-image: url('../assets/img/fundo-dle.jpg');
+}
+
+.dle .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+
+
+.dle-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+    position: relative; 
+    z-index: 2;
+    pointer-events: none;
+}
+.dle-logo img {
+    width: 420px;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px #000);
+}
+
+/* CONTAINER GERAL */
+.dle .container {
+    display: flex;
+    width: 100%;
+    gap: 40px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dle .quiz {
+    display: flex;
+    flex-direction: column; 
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    background-color: #1c1a1acc;
+    width: 80%;
+    height: auto;
+    padding: 40px 20px;
+    border-radius: 20px;
+    border: 3px solid #4a3e3a;
+    box-shadow: 0 0 20px #000;
+    gap: 20px;
+}
+
+
+.dle .quiz h2 {
+    font-size: 2.5em;
+    color: #e6d6b7;
+    text-shadow: 0 0 10px #000;
+    margin-bottom: 10px;
+}
+
+.dle .quiz input {
+    width: 340px;
+    height: 45px;
+    border-radius: 12px;
+    border: none;
+    background-color: #e8e2d7;
+    font-size: 1.1em;
+    box-shadow: 0 0 10px #0005 inset;
+}
+
+
+.dle .quiz button {
+    width: 120px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    background-color: #2e2a29;
+    color: #e6d6b7;
+    border: 2px solid #534a45;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dle .quiz button:hover {
+    background-color: #463f3b;
+}
+
+.dle .respostas {
+    display: flex;
+    justify-content: center;
+    gap: 80px; 
+    width: 100%;
+}
+
+.dle .respostas .card {
+    width: 90px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 20px;
+    background-color: #252121dd;
+    color: #e6d6b7;
+    border: 2px solid #3d3431;
+    box-shadow: 0 0 10px #0007;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#linha .card {
+    width: 110px;
+    height: 60px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.input-area {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: rgba(0,0,0,0.3);
+    padding: 15px 20px;
+    border-radius: 15px;
+    width: 400px;
+    backdrop-filter: blur(4px);
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 30px;
+    border: 1px solid #444;
+    outline: none;
+    font-size: 16px;
+}
+
+.btn-play {
+    background: #ffd700;
+    border: none;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-play:hover {
+    transform: scale(1.1);
+}
+
+#historico {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#historico .respostas {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+#historico .card {
+    padding: 8px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #2b2b2b;
+    color: white;
+}
+
+#linha .card {
+    transition: 0.3s;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #fff;
+}
+
+
+.dle .historico {
+    margin-top: 15px;
+    padding: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.dle .historico::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dle .historico::-webkit-scrollbar-thumb {
+    background-color: #8d7853;
+    border-radius: 8px;
+}
+
+
+.dle .botao-quiz button {
+    font-family: 'Cormorant Garamond', serif;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    color: #FFFF;
+    background-color: #000000;
+    transition: 1s;
+
+}
+
+.dle .botoes {
+    font-size: 12px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 40px;
+    transition: 1s;
+
+}
+
+.dle .botoes a {
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.dle .botao-quiz button:hover {
+    display: flex;
+    transition: 1s;
+    transform: scale(1.10);
+    background-color: #2c0000;
+}
+
+.tentativa-linha {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 10px;
+}
+
+.img-box {
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #333;
+    background: rgba(0,0,0,0.4);
+}
+
+.img-box img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.sugestao {
+    padding: 6px 10px;
+    background: #333;
+    color: white;
+    border-radius: 6px;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sugestao:hover {
+    background: #555;
+}
+
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background: #1e1e1e;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    border: 2px solid #c9a45c;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: #c9a45c;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background: #e2c078;
+}
