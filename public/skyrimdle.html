@@ -241,7 +241,7 @@
             "img": "./assets/img/personagens/farkas.jpg"
         },
         {
-            "nome": "Vilkas",   
+            "nome": "Vilkas",
             "questline": "Secundária",
             "genero": "Homem",
             "raca": "Nórdico",
@@ -551,27 +551,31 @@
             mensagem.innerHTML = '';
             return;
         }
+        personagens.forEach(function (personagemAtual) {
+            var nome = personagemAtual.nome.toLowerCase();
 
-        personagens.forEach(p => {
-            var nome = p.nome.toLowerCase();
             if (nome.startsWith(tentativa)) {
-                msg += `<div class="sugestao" onclick="preencher('${p.nome}')">${p.nome}</div>`;
+                msg += `
+            <div class="sugestao" onclick="preencher('${personagemAtual.nome}')">
+                ${personagemAtual.nome}
+            </div>
+        `;
             }
         });
-
         mensagem.innerHTML = msg;
     }
     function preencher(nome) {
         input_personagem.value = nome;
-        mensagem.innerHTML = ""; 
-        input_personagem.focus();
+        mensagem.innerHTML = "";
     }
 
     function tentar() {
         var tentativa = input_personagem.value.toLowerCase();
         tentativas++;
 
-        var comparar = personagens.find(p => p.nome.toLowerCase() == tentativa);
+        var comparar = personagens.find(function (personagemAtual) {
+            return personagemAtual.nome.toLowerCase() == tentativa;
+        });
 
         if (!comparar) {
             alert("Personagem inválido!");
@@ -581,13 +585,13 @@
         if (comparar.nome == personagem.nome) {
             ganhou = true;
         }
-        
+
         function compararCampo(campo, elemento) {
             elemento.innerHTML = comparar[campo];
 
             if (comparar[campo] == personagem[campo]) {
                 elemento.style.backgroundColor = "green";
-            } else if (comparar[campo].includes(personagem[campo])){
+            } else if (comparar[campo].includes(personagem[campo])) {
                 elemento.style.backgroundColor = "orange";
             } else {
                 elemento.style.backgroundColor = "red";
@@ -624,7 +628,7 @@
 
 
         if (ganhou) {
-            zerarTentativas();
+            armazenarTentativa();
             abrirPopup(`
         Parabéns! Você adivinhou <b>${personagem.nome}</b> em ${tentativas} tentativas! <br>
         <img src="${personagem.img}" style="width:120px; margin-top:10px;">
@@ -649,16 +653,34 @@
         botao_quiz.style.display = "block";
     }
 
-    function zerarTentativas() {
-        fetch("/quiz/zerarTentativas", {
+    function armazenarTentativa() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var tentativas = window.tentativas;
+
+        // Verificando se há algum campo em branco
+
+        // Enviando o valor da nova input
+        fetch("/quiz/armazenarTentativas", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
                 tentativasServer: tentativas
             }),
-        }).catch(err => console.log(err));
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
     }
 
     function abrirPopup(msg) {
