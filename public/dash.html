@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skyrim | Dashboard</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/dashboards.css">
+    <link rel="icon" href="./assets/img/skyrimIcon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+
+    <!--header inicio-->
+    <header>
+        <nav>
+            <a class="logo" href="/">Skyrim</a>
+
+            <ul class="nav-list">
+            </ul>
+
+            <div class="nav-action">
+                <h2>Olá, <span id="nome_usuario">Usuário</span></h2>
+                <img class="nav-img" src="./assets/img/cadastro/imperial.jpg" alt="icon imperial">
+            </div>
+        </nav>
+    </header>
+    <!--header fim-->
+    <div class="container" > 
+
+    </div>
+
+    <!-- Container de login -->
+
+
+    <!--footer inicio-->
+    <footer>
+        <div class="facecard">
+            <img src="./assets/img/face.png" alt="" />
+            <h1>Luiz Vittor Marques Ribeiro</h1>
+            <p>
+                Responsável pelo desenvolvimento frontend e backend do site como projeto
+                individual na disciplina de PI na SPTECH.
+            </p>
+        </div>
+
+        <div class="redes-sociais">
+            <img src="./assets/img/linkedin.png" alt="">
+            <img src="./assets/img/github.webp" alt="">
+            <img src="./assets/img/github.webp" alt="">
+        </div>
+
+        <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
+    </footer>
+
+
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h2 id="popup-msg"></h2>
+            <button onclick="fecharPopup()">OK</button>
+        </div>
+
+
+    <!--footer fim-->
+
+</body> 
+
+</html>
+
+<script>
+        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function abrirPopup(msg) {
+        document.getElementById("popup-msg").innerHTML = msg;
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function fecharPopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>

@@ -18,14 +18,8 @@ function autenticar(req, res) {
                     res.json({
                         id: resultadoAutenticar[0].id,
                         nome: resultadoAutenticar[0].nome,
-                        idade: resultadoAutenticar[0].idade,
-                        classe: resultadoAutenticar[0].classe,
-                        lugar: resultadoAutenticar[0].lugar,
-                        genero: resultadoAutenticar[0].genero,
-                        raca: resultadoAutenticar[0].raca,
-                        magia: resultadoAutenticar[0].magia,
-                        email: resultadoAutenticar[0].email,
-                        senha: resultadoAutenticar[0].senha
+                        email: resultadoAutenticar[0].email
+                        // Faltam idade, classe, etc. aqui.
                     });
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
@@ -42,6 +36,7 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
+
     var nome = req.body.nomeServer;
     var idade = req.body.idadeServer;
     var classe = req.body.classeServer;
@@ -52,23 +47,45 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
+
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
+        return; 
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
+        return;
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else {
-        usuarioModel.cadastrar(nome, idade, classe, lugar, genero, raca, magia, email, senha)
-            .then(function (resultado) {
-                res.json(resultado);
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    }
+        return;
+    } 
+    
+    usuarioModel.cadastrarUsuario(nome, email, senha)
+        .then(function (resultadoInsertUsuario) {
+            console.log("Primeiro INSERT (Usuário) realizado com sucesso. Resultado:", resultadoInsertUsuario);
+
+          // IMPORTANTE: Captura o ID do usuário recém-criado.
+            // O pacote mysql2 geralmente retorna o ID em 'insertId'.
+            var novoUsuarioId = resultadoInsertUsuario.insertId;
+
+            // 4. Executa o segundo INSERT (ATRIBUTOS), usando o novo ID como FK
+            usuarioModel.cadastrarAtributos(novoUsuarioId, idade, classe, lugar, genero, raca, magia)
+                .then(function (resultadoInsertAtributos) {
+                    console.log("Segundo INSERT (Atributos) realizado com sucesso.");
+                    res.status(201).json({
+                        message: "Cadastro completo realizado com sucesso!",
+                        usuarioId: novoUsuarioId
+                    });
+                })
+                .catch(function (erroAtributos) {
+                    console.log("\nHouve um erro ao realizar o cadastro dos atributos! Erro: ", erroAtributos.sqlMessage);
+                    res.status(500).json(erroAtributos.sqlMessage);
+                });
+
+        })
+        .catch(function (erroUsuario) {
+            console.log("\nHouve um erro ao realizar o cadastro do usuário! Erro: ", erroUsuario.sqlMessage);
+            res.status(500).json(erroUsuario.sqlMessage);
+        });
 }
 
 module.exports = {

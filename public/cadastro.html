@@ -189,10 +189,57 @@
       mensagem_erro.innerHTML = "Preencha todos os campos!";
       setTimeout(sumirMensagem, 4000);
       return false;
+    } 
+      
+      if (senhaVar.length < 8) {
+        mensagem_erro.innerHTML = "A senha deve ter pelo menos 8 caracteres!";
+        document.querySelector(".alerta_erro").style.display = "flex";
+        setTimeout(sumirMensagem, 4000);
+      return false;
     }
 
-
-
+    var temMaiuscula = false;
+    for (var i = 0; i < senhaVar.length; i++) {
+      if (senhaVar[i] >= 'A' && senhaVar[i] <= 'Z') {
+        temMaiuscula = true;
+        i = senhaVar.length;
+      }
+    }
+    if (!temMaiuscula) {
+      mensagem_erro.innerHTML = "A senha deve ter pelo menos uma letra maiúscula!";
+      document.querySelector(".alerta_erro").style.display = "flex";
+      setTimeout(sumirMensagem, 4000);
+      return false;
+    }
+    
+    var temNumero = false;
+    for (var i = 0; i < senhaVar.length; i++) {
+      if (senhaVar[i] >= '0' && senhaVar[i] <= '9') {
+        temNumero = true;
+        i = senhaVar.length; 
+      }
+    }
+    if (!temNumero) {
+      mensagem_erro.innerHTML = "A senha deve ter pelo menos um número!";
+      document.querySelector(".alerta_erro").style.display = "flex";
+      setTimeout(sumirMensagem, 4000);
+      return false;
+    }
+    
+    if (!senhaVar.includes("@")) {
+      mensagem_erro.innerHTML = "A senha deve conter o símbolo @!";
+      document.querySelector(".alerta_erro").style.display = "flex";
+      setTimeout(sumirMensagem, 4000);
+      return false;
+    }
+    
+    if (senhaVar != confirmacaoSenhaVar) {
+      mensagem_erro.innerHTML = "As senhas não coincidem!";
+      document.querySelector(".alerta_erro").style.display = "flex";
+      setTimeout(sumirMensagem, 4000);
+      return false;
+    }
+    
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -202,7 +249,7 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-
+        
         nomeServer: nomeVar,
         idadeServer: idadeVar,
         classeServer: classeVar,

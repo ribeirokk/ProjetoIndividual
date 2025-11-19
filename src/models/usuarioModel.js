@@ -1,7 +1,9 @@
 var database = require("../database/config")
 
 function autenticar(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
+    console.log("ACESSEI O USUARIO MODEL para autenticar");
+    // Nota: Para autenticar corretamente e buscar TODOS os dados (incluindo atributos), 
+    // você precisará de um JOIN na sua query de SELECT, mas vamos focar no cadastro por enquanto.
     var instrucaoSql = `
         SELECT id, nome, email FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
@@ -9,20 +11,28 @@ function autenticar(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, idade, classe, lugar, genero, raca, magia, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, idade, classe, lugar, genero, raca, magia, email, senha);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
+function cadastrarUsuario(nome, email, senha) {
+    console.log("ACESSEI O USUARIO MODEL para cadastrar usuario");
     var instrucaoSql = `
-        INSERT INTO usuario (nome, idade, classe, lugar, genero, raca, magia, email, senha) VALUES ('${nome}', '${idade}', '${classe}', '${lugar}', '${genero}', '${raca}', '${magia}', '${email}', '${senha}');
+        INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
+function cadastrarAtributos(fkUsuario, idade, classe, lugar, genero, raca, magia) {
+    console.log("ACESSEI O USUARIO MODEL para cadastrar atributos");
+    var instrucaoSql = `
+        INSERT INTO atributos (fkUsuario, idade, classe, lugar, genero, raca, magia) 
+        VALUES ('${fkUsuario}', '${idade}', '${classe}', '${lugar}', '${genero}', '${raca}', '${magia}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrarUsuario, // Exporta a nova função de usuário
+    cadastrarAtributos // Exporta a nova função de atributos
 };
