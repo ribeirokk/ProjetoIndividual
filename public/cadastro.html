@@ -156,82 +156,115 @@
 </html>
 
 <script>
-function cadastrar() {
-  var nomeVar = nome_input.value;
-  var idadeVar = idade_input.value;
-  var classeVar = classe_input.value;
-  var lugarVar = lugar_input.value;
-  var generoVar = genero_select.value;
-  var racaVar = raca_select.value;
-  var magiaVar = magia_select.value;
-  var emailVar = email_input.value;
-  var senhaVar = senha_input.value;
-  var confirmacaoSenhaVar = confirmacao_senha_input.value;
-
   var faccao = sessionStorage.getItem("faccaoEscolhida");
-  console.log("FACCAO (sessionStorage):", faccao); 
+  function cadastrar() {
+    // aguardar();
 
-  // validações
-  if (
-    nomeVar == "" || idadeVar == "" || classeVar == "" || lugarVar == "" ||
-    generoVar == "" || racaVar == "" || magiaVar == "" || emailVar == "" ||
-    senhaVar == "" || confirmacaoSenhaVar == ""
-  ) {
-    document.querySelector(".alerta_erro").style.display = "flex";
-    mensagem_erro.innerHTML = "Preencha todos os campos!";
-    setTimeout(sumirMensagem, 4000);
-    return false;
-  }
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var idadeVar = idade_input.value;
+    var classeVar = classe_input.value;
+    var lugarVar = lugar_input.value;
+    var generoVar = genero_select.value;
+    var racaVar = raca_select.value;
+    var magiaVar = magia_select.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-  if (!faccao) {
-    mensagem_erro.innerHTML = "Escolha uma facção antes de se cadastrar!";
-    document.querySelector(".alerta_erro").style.display = "flex";
-    setTimeout(sumirMensagem, 4000);
-    return false;
-  }
-
-  // payload
-  var payload = {
-    nomeServer: nomeVar,
-    idadeServer: idadeVar,
-    classeServer: classeVar,
-    lugarServer: lugarVar,
-    generoServer: generoVar,
-    racaServer: racaVar,
-    magiaServer: magiaVar,
-    emailServer: emailVar,
-    senhaServer: senhaVar,
-    faccaoServer: faccao
-  };
-
-  console.log("PAYLOAD enviar /usuarios/cadastrar:", JSON.stringify(payload)); // <--- log
-
-  fetch("/usuarios/cadastrar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  })
-  .then(function (resposta) {
-    console.log("Resposta do fetch:", resposta);
-    if (resposta.ok) {
+    if (
+      nomeVar == "" ||
+      idadeVar == "" ||
+      classeVar == "" ||
+      lugarVar == "" ||
+      generoVar == "" ||
+      racaVar == "" ||
+      magiaVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
       document.querySelector(".alerta_erro").style.display = "flex";
-      mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-      setTimeout(() => { window.location = "login.html"; }, 2000);
-      limparFormulario();
-    } else {
-      resposta.text().then(t => {
-        console.error("Erro do servidor:", t);
-        mensagem_erro.innerHTML = "Erro ao cadastrar: " + t;
-        document.querySelector(".alerta_erro").style.display = "flex";
-      });
+      mensagem_erro.innerHTML = "Preencha todos os campos!";
+      setTimeout(sumirMensagem, 2000);
+      return false;
     }
-  })
-  .catch(function (erro) {
-    console.log("#ERRO fetch:", erro);
-    mensagem_erro.innerHTML = "Erro de rede: " + erro;
-    document.querySelector(".alerta_erro").style.display = "flex";
-  });
 
-  return false;
-}
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+
+        nomeServer: nomeVar,
+        idadeServer: idadeVar,
+        classeServer: classeVar,
+        lugarServer: lugarVar,
+        generoServer: generoVar,
+        racaServer: racaVar,
+        magiaServer: magiaVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        faccaoServer: faccao
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          document.querySelector(".alerta_erro").style.display = "flex";
+
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    document.querySelector(".alerta_erro").style.display = "none";
+  }
+
+
+  function trocar() {
+    var raca = raca_select.value;
+    var personagemImg = document.getElementById("personagemImg");
+
+    var imagens = {
+      dunmer: "./assets/img/cadastro/highelf.jpg",
+      altamer: "./assets/img/cadastro/darkelf.jpg",
+      bosmer: "./assets/img/cadastro/woodelf.jpg",
+      orc: "./assets/img/cadastro/orc.jpg",
+      khajiit: "./assets/img/cadastro/khajiit.jpg",
+      argoniano: "./assets/img/cadastro/argonian.jpg",
+      imperial: "./assets/img/cadastro/imperial.jpg",
+      nordico: "./assets/img/cadastro/nord.jpg",
+      redguard: "./assets/img/cadastro/redguard.jpg",
+      bretao: "./assets/img/cadastro/breton.jpg"
+    };
+
+    if (imagens[raca]) {
+      personagemImg.src = imagens[raca];
+    }
+  }
 </script>
