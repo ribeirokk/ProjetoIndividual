@@ -25,7 +25,7 @@
 
             <div class="nav-action">
                 <img class="nav-img" src="./assets/img/imperioIcon.png" alt="icon imperial">
-                <a href="index.htmlx" style="display: flex;">
+                <a href="index.html" style="display: flex;">
                     <button class="nav-button">Voltar ao Início</button>
                     <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
                 </a>
@@ -65,6 +65,8 @@
                     <button onclick="tentar()" class="btn-play">➤</button>
                     <p id="mensagem"></p>
                 </div>
+
+                <button onclick="desistir()" class="btn-desistir">Desistir</button>
 
                 <div class="respostas">
                     <div class="card">QuestLine</div>
@@ -545,28 +547,28 @@
 
     function validar() {
         var tentativa = input_personagem.value.toLowerCase();
-        var msg = ''; 
+        var msg = '';
 
         if (tentativa == '') {
             mensagem.innerHTML = '';
         } else {
 
-            
+
             for (var i = 0; i < personagens.length; i++) {
                 var personagemAtual = personagens[i];
                 var nome = personagemAtual.nome.toLowerCase();
-                
+
                 if (nome.startsWith(tentativa)) {
                     msg += `
                     <div class="sugestao" onclick="preencher('${personagemAtual.nome}')">
                         ${personagemAtual.nome}
                         </div>
                         `;
-                    }   
                 }
-                
             }
-        mensagem.innerHTML = msg; 
+
+        }
+        mensagem.innerHTML = msg;
     }
 
     function preencher(nome) {
@@ -632,7 +634,7 @@
 
 
         if (ganhou) {
-            armazenarTentativa();
+            registrarTentativa();
             abrirPopup(`
         Parabéns! Você adivinhou <b>${personagem.nome}</b> em ${tentativas} tentativas! <br>
         <img src="${personagem.img}" style="width:120px; margin-top:10px;">
@@ -652,40 +654,39 @@
         botao_quiz.style.display = "none";
     }
 
+    function registrarTentativa() {
+
+        fetch("/partida/registrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: sessionStorage.ID_USUARIO,
+                tentativas: tentativas,
+                venceu: ganhou ? 1 : 0
+            }),
+        })
+            .then(res => console.log("Registrado:", res))
+            .catch(err => console.log("ERRO:", err));
+
+    }
+
     function desistir() {
+
+        fetch("/partida/registrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: sessionStorage.ID_USUARIO,
+                tentativas: tentativas,
+                venceu: 0
+            })
+        });
+
         quiz.style.display = "none";
         botao_quiz.style.display = "block";
     }
 
-    function armazenarTentativa() {
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var tentativas = window.tentativas;
-
-        // Verificando se há algum campo em branco
-
-        // Enviando o valor da nova input
-        fetch("/quiz/armazenarTentativas", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                tentativasServer: tentativas
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-
-        return false;
-    }
 
     function abrirPopup(msg) {
         document.getElementById("popup-msg").innerHTML = msg;

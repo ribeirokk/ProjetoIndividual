@@ -224,7 +224,7 @@ footer {
 }
 
 
-.dle .quiz button {
+.dle .quiz .btn-play {
     width: 120px;
     height: 45px;
     border-radius: 10px;
@@ -236,7 +236,7 @@ footer {
     transition: 0.2s;
 }
 
-.dle .quiz button:hover {
+.dle .quiz .btn-play:hover {
     background-color: #463f3b;
 }
 
@@ -465,4 +465,25 @@ footer {
 
 .popup-content button:hover {
     background: #e2c078;
+}
+
+.btn-desistir {
+    margin-top: -25px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    background: linear-gradient(180deg, #6b0000, #3d0000);
+    border: 2px solid #8b0000;
+    color: #f2d5b4;
+    font-size: 13px;
+    font-family: "Cinzel", serif;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s;
+    box-shadow: 0 0 8px #550000;
+}
+
+.btn-desistir:hover {
+    background: linear-gradient(180deg, #9e0000, #4b0000);
+    transform: scale(1.04);
+    box-shadow: 0 0 12px #770000;
 }

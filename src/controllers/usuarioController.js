@@ -18,8 +18,8 @@ function autenticar(req, res) {
                     res.json({
                         id: resultadoAutenticar[0].id,
                         nome: resultadoAutenticar[0].nome,
-                        email: resultadoAutenticar[0].email
-                        // Faltam idade, classe, etc. aqui.
+                        email: resultadoAutenticar[0].email,
+                        faccao: resultadoAutenticar[0].faccao
                     });
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
@@ -46,44 +46,53 @@ function cadastrar(req, res) {
     var magia = req.body.magiaServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-
+    var faccao = req.body.faccaoServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-        return; 
+        return;
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
         return;
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
         return;
-    } 
-    
+    }
+
+    // Primeiro: cadastra o usuário
     usuarioModel.cadastrarUsuario(nome, email, senha)
         .then(function (resultadoInsertUsuario) {
-            console.log("Primeiro INSERT (Usuário) realizado com sucesso. Resultado:", resultadoInsertUsuario);
+            console.log("INSERT usuario OK:", resultadoInsertUsuario);
 
-          // IMPORTANTE: Captura o ID do usuário recém-criado.
-            // O pacote mysql2 geralmente retorna o ID em 'insertId'.
             var novoUsuarioId = resultadoInsertUsuario.insertId;
 
-            // 4. Executa o segundo INSERT (ATRIBUTOS), usando o novo ID como FK
-            usuarioModel.cadastrarAtributos(novoUsuarioId, idade, classe, lugar, genero, raca, magia)
-                .then(function (resultadoInsertAtributos) {
-                    console.log("Segundo INSERT (Atributos) realizado com sucesso.");
+            // Segundo: cadastrar atributos (agora com facção)
+            usuarioModel.cadastrarAtributos(
+                novoUsuarioId,
+                idade,
+                classe,
+                lugar,
+                genero,
+                raca,
+                magia,
+                faccao
+            )
+                .then(function () {
+                    console.log("INSERT atributos OK");
+
                     res.status(201).json({
                         message: "Cadastro completo realizado com sucesso!",
                         usuarioId: novoUsuarioId
                     });
                 })
                 .catch(function (erroAtributos) {
-                    console.log("\nHouve um erro ao realizar o cadastro dos atributos! Erro: ", erroAtributos.sqlMessage);
+                    console.log("\nErro no INSERT atributos:", erroAtributos.sqlMessage);
                     res.status(500).json(erroAtributos.sqlMessage);
                 });
 
         })
         .catch(function (erroUsuario) {
-            console.log("\nHouve um erro ao realizar o cadastro do usuário! Erro: ", erroUsuario.sqlMessage);
+            console.log("\nErro no INSERT usuario:", erroUsuario.sqlMessage);
             res.status(500).json(erroUsuario.sqlMessage);
         });
 }

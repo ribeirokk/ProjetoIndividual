@@ -21,30 +21,13 @@ primary key (fkUsuario),
 foreign key (fkUsuario) references usuario (id)
 );
 
-select * from usuario;
-
-select * from atributos	;
-
-create table partida (
-    idPartida int primary key auto_increment,
+CREATE TABLE partida (
+    id int primary key auto_increment,
     fkUsuario int,
     tentativasUsadas int,
-    venceu boolean default false,
+    venceu tinyint(1) default 0,
+    dataPartida timestamp default current_timestamp,
     foreign key (fkUsuario) references usuario(id)
 );
 
-create table tentativa_partida (
-    idTentativa int primary key auto_increment,
-    fkPartida int,
-    tentativaNumero int,
-    foreign key (fkPartida) references partida(idPartida)
-);
-
-create table vitorias_geral (
-    fkUsuario int primary key,
-    totalVitorias int,
-    totalDerrotas int,
-    sequenciaVitorias int, 
-    foreign key (fkUsuario) references usuario(id)
-);
-
+select * from partida;
