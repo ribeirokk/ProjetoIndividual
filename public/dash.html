@@ -1,87 +1,274 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Skyrim | Dashboard</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/dashboards.css">
-    <link rel="icon" href="./assets/img/skyrimIcon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryoTech - Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="./css/dashboards.css">
 </head>
 
 <body>
+  <!--header inicio-->
+  <header>
+    <nav>
+      <a class="logo" href="/">Skyrim</a>
 
-    <!--header inicio-->
-    <header>
-        <nav>
-            <a class="logo" href="/">Skyrim</a>
+      <ul class="nav-list">
+      </ul>
 
-            <ul class="nav-list">
-            </ul>
+    </nav>
+  </header>
+  <!--header fim-->
+  <div class="escolha">
+    <div class="dash-escolha" onclick="dashMundo()">
+      <p>| Mundo de Skyrim |</p>
+    </div>
+    <div class="dash-escolha" onclick="dashDle()">
+      <p>| Dados DLE |</p>
+    </div>
+  </div>
+  <div class="dashboard">
+    <div class="lateral">
+      <div class="nav-action">
+        <h2>Olá, <span id="nome_usuario"></span></h2>
+        <img class="nav-img" src="./assets/img/cadastro/imperial.jpg" alt="icon imperial">
+      </div>
 
-            <div class="nav-action">
-                <h2>Olá, <span id="nome_usuario">Usuário</span></h2>
-                <img class="nav-img" src="./assets/img/cadastro/imperial.jpg" alt="icon imperial">
-            </div>
-        </nav>
-    </header>
-    <!--header fim-->
-    <div class="container" > 
+      <!--       <h2>Câmara 1 <br> <br>Sensor selecionado:</h2>
+      <div class="legenda">
+        <p>
+          <span style="color: rgb(0, 119, 255)">Ideal:</span> -18°C a -21°C
+        </p>
+        <p><span style="color: green">Boa:</span> -22°C a -39°C</p>
+        <p><span style="color: red">Crítica:</span> acima de -18°C</p>
+      </div> -->
+
+      <button class="botao" onclick="voltarDashboard()">Voltar</button>
 
     </div>
 
-    <!-- Container de login -->
-
-
-    <!--footer inicio-->
-    <footer>
-        <div class="facecard">
-            <img src="./assets/img/face.png" alt="" />
-            <h1>Luiz Vittor Marques Ribeiro</h1>
-            <p>
-                Responsável pelo desenvolvimento frontend e backend do site como projeto
-                individual na disciplina de PI na SPTECH.
-            </p>
+    <div class="container">
+      <div class="info">
+        <div class="box-imperio">
+          <p>Soldados Imperiais</p>
+          <p id="p_imperio" class="metrica">---</p>
         </div>
-
-        <div class="redes-sociais">
-            <img src="./assets/img/linkedin.png" alt="">
-            <img src="./assets/img/github.webp" alt="">
-            <img src="./assets/img/github.webp" alt="">
+        <div class="box">
+          <p>Classe mais usada </p>
+          <p id="p_classeMaisUsada" class="metrica">---</p>
         </div>
-
-        <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
-    </footer>
-
-
-    <div id="popup" class="popup" style="display: none;">
-        <div class="popup-content">
-            <h2 id="popup-msg"></h2>
-            <button onclick="fecharPopup()">OK</button>
+        <div class="box">
+          <p>Magia mais usada</p>
+          <p id="p_magiaMaisUsada" class="metrica">---</p>
         </div>
+        <div class="box">
+          <p>Raça predominante</p>
+          <p id="p_racaPredominante" class="metrica">---</p>
+        </div>
+        <div class="box-storm">
+          <p>Soldados Stormcloaks</p>
+          <p id="p_stormcloaks" class="metrica">---</p>
+        </div>
+      </div>
+
+
+      <div class="grafico-inferior">
+        <div class="grafico-grande"><canvas id="temperatura"></canvas></div>
+      </div>
+      <div class="graficos">
+        <div class="grafico"><canvas id="g1"></canvas></div>
+        <div class="grafico"><canvas id="g2"></canvas></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--footer inicio-->
+  <footer>
+    <div class="facecard">
+      <img src="./assets/img/face.png" alt="" />
+      <h1>Luiz Vittor Marques Ribeiro</h1>
+      <p>
+        Responsável pelo desenvolvimento frontend e backend do site como projeto
+        individual na disciplina de PI na SPTECH.
+      </p>
+    </div>
+
+    <div class="redes-sociais">
+      <img src="./assets/img/linkedin.png" alt="">
+      <img src="./assets/img/github.webp" alt="">
+      <img src="./assets/img/github.webp" alt="">
+    </div>
+
+    <p id="copyright">The Elder Scrolls Skryim is © Copyright 2025 Bethesda</p>
+  </footer>
+
+  <div id="popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <h2 id="popup-msg"></h2>
+      <button onclick="fecharPopup()">OK</button>
+    </div>
 
 
     <!--footer fim-->
 
-</body> 
+    <script>
 
-</html>
+      function soldadosImperiais() {
 
-<script>
-        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        fetch(`/usuarios/soldadosImperiais/`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            soldadoServer: sessionStorage.ID_USUARIO
+          })
+        }).then(function (resposta) {
 
-    function abrirPopup(msg) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function(data) {
+              p_imperio.innerHTML = data.faccao
+            }
+          );
+        } 
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      }
+      soldadosImperiais()
+
+      function soldadosStormcloaks() {
+
+        fetch(`/usuarios/soldadosStormcloaks/`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            soldadoServer: sessionStorage.ID_USUARIO
+          })
+        }).then(function (resposta) {
+
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function(data) {
+              p_stormcloaks.innerHTML = data.faccao
+            }
+          );
+        } 
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      }
+      soldadosStormcloaks()
+
+      function classeMaisUsada() {
+
+        fetch(`/usuarios/classeMaisUsada/`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            soldadoServer: sessionStorage.ID_USUARIO
+          })
+        }).then(function (resposta) {
+
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function(data) {
+              p_classeMaisUsada.innerHTML = data.classe
+            }
+          );
+        } 
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      }
+      classeMaisUsada()
+
+      function magiaMaisUsada() {
+
+        fetch(`/usuarios/magiaMaisUsada/`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            soldadoServer: sessionStorage.ID_USUARIO
+          })
+        }).then(function (resposta) {
+
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function(data) {
+              p_magiaMaisUsada.innerHTML = data.magia
+            }
+          );
+        } 
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      }
+      magiaMaisUsada()
+
+      function racaPredominante() {
+
+        fetch(`/usuarios/racaPredominante/`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            soldadoServer: sessionStorage.ID_USUARIO
+          })
+        }).then(function (resposta) {
+
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function(data) {
+              p_racaPredominante.innerHTML = data.raca
+            }
+          );
+        } 
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      }
+      racaPredominante()
+      
+      function voltarHome() {
+        window.location.href = "index.html";
+      }
+
+      function voltarDashboard() {
+        window.location.href = "skyrimdle.html";
+      };
+
+      function abrirPopup(msg) {
         document.getElementById("popup-msg").innerHTML = msg;
         document.getElementById("popup").style.display = "flex";
-    }
+      };
 
-    function fecharPopup() {
+      function fecharPopup() {
         document.getElementById("popup").style.display = "none";
-    }
-</script>
+      };
+
+      nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
+
+
+    </script>
