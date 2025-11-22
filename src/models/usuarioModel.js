@@ -30,7 +30,7 @@ function cadastrarAtributos(fkUsuario, idade, classe, lugar, genero, raca, magia
     return database.executar(instrucaoSql);
 }
 
-function soldadosImperiais(soldado) {
+function soldadosImperiais() {
     console.log("ACESSEI");
     var instrucaoSql = `
     select count(faccao) as faccao from atributos where faccao like "Imperio";
@@ -39,7 +39,7 @@ function soldadosImperiais(soldado) {
     return database.executar(instrucaoSql);
 }
 
-function soldadosStormcloaks(soldado) {
+function soldadosStormcloaks() {
     console.log("ACESSEI");
     var instrucaoSql = `
     select count(faccao) as faccao from atributos where faccao like "Stormcloaks";

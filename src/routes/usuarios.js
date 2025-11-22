@@ -12,23 +12,23 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.post("/soldadosImperiais", function (req, res) {
+router.get("/soldadosImperiais", function (req, res) {
     usuarioController.soldadosImperiais(req, res);
 });
 
-router.post("/soldadosStormcloaks", function (req, res) {
+router.get("/soldadosStormcloaks", function (req, res) {
     usuarioController.soldadosStormcloaks(req, res);
 });
 
-router.post("/classeMaisUsada", function (req, res) {
+router.get("/classeMaisUsada", function (req, res) {
     usuarioController.classeMaisUsada(req, res);
 });
 
-router.post("/magiaMaisUsada", function (req, res) {
+router.get("/magiaMaisUsada", function (req, res) {
     usuarioController.magiaMaisUsada(req, res);
 });
 
-router.post("/racaPredominante", function (req, res) {
+router.get("/racaPredominante", function (req, res) {
     usuarioController.racaPredominante(req, res);
 });
 

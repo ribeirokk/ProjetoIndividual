@@ -36,11 +36,7 @@ function autenticar(req, res) {
 }
 
 function soldadosImperiais(req, res) {
-    var soldado = req.body.soldadoServer
-    if (soldado == undefined) {
-        res.status(400).send("Seu soldado está undefined!");
-    } else {
-        usuarioModel.soldadosImperiais(soldado)
+        usuarioModel.soldadosImperiais()
             .then(function (resultadoSoldadosImperiais) {
                 console.log(`\nResultados encontrados: ${resultadoSoldadosImperiais.length}`);
                 console.log(`Resultados: ${JSON.stringify(resultadoSoldadosImperiais)}`);
@@ -58,15 +54,11 @@ function soldadosImperiais(req, res) {
                 console.log("\nHouve um Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-    }
-}
-
+    };
+    
 function soldadosStormcloaks(req, res) {
-    var soldado = req.body.soldadoServer
-    if (soldado == undefined) {
-        res.status(400).send("Seu soldado está undefined!");
-    } else {
-        usuarioModel.soldadosStormcloaks(soldado)
+
+        usuarioModel.soldadosStormcloaks()
             .then(function (resultadoSoldadosStormcloaks) {
                 console.log(`\nResultados encontrados: ${resultadoSoldadosStormcloaks.length}`);
                 console.log(`Resultados: ${JSON.stringify(resultadoSoldadosStormcloaks)}`);
@@ -84,15 +76,12 @@ function soldadosStormcloaks(req, res) {
                 console.log("\nHouve um Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-    }
-};
+    };
+
 
 function magiaMaisUsada(req, res) {
-    var soldado = req.body.soldadoServer
-    if (soldado == undefined) {
-        res.status(400).send("magia está undefined!");
-    } else {
-        usuarioModel.magiaMaisUsada(soldado)
+
+        usuarioModel.magiaMaisUsada()
             .then(function (resultadoMagiaMaisUsada) {
                 console.log(`\nResultados encontrados: ${resultadoMagiaMaisUsada.length}`);
                 console.log(`Resultados: ${JSON.stringify(resultadoMagiaMaisUsada)}`);
@@ -110,15 +99,10 @@ function magiaMaisUsada(req, res) {
                 console.log("\nHouve um Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-    }
-};
+    };
 
 function classeMaisUsada(req, res) {
-    var soldado = req.body.soldadoServer
-    if (soldado == undefined) {
-        res.status(400).send("classe está undefined!");
-    } else {
-        usuarioModel.classeMaisUsada(soldado)
+        usuarioModel.classeMaisUsada()
             .then(function (resultadoClasseMaisUsada) {
                 console.log(`\nResultados encontrados: ${resultadoClasseMaisUsada.length}`);
                 console.log(`Resultados: ${JSON.stringify(resultadoClasseMaisUsada)}`);
@@ -136,15 +120,10 @@ function classeMaisUsada(req, res) {
                 console.log("\nHouve um Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-    }
-};
+    };
 
 function racaPredominante(req, res) {
-    var soldado = req.body.soldadoServer
-    if (soldado == undefined) {
-        res.status(400).send("raça está undefined!");
-    } else {
-        usuarioModel.racaPredominante(soldado)
+        usuarioModel.racaPredominante()
             .then(function (resultadoRacaPredominante) {
                 console.log(`\nResultados encontrados: ${resultadoRacaPredominante.length}`);
                 console.log(`Resultados: ${JSON.stringify(resultadoRacaPredominante)}`);
@@ -162,9 +141,7 @@ function racaPredominante(req, res) {
                 console.log("\nHouve um Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-    }
-};
-
+    };
 
 function cadastrar(req, res) {
 
@@ -230,3 +207,4 @@ module.exports = {
     classeMaisUsada,
     racaPredominante,
 };
+    

@@ -116,140 +116,112 @@
 
     <script>
 
-      function soldadosImperiais() {
-
-        fetch(`/usuarios/soldadosImperiais/`, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            soldadoServer: sessionStorage.ID_USUARIO
-          })
-        }).then(function (resposta) {
-
-          console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            resposta.json().then(function(data) {
-              p_imperio.innerHTML = data.faccao
-            }
-          );
-        } 
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-
-      }
-      soldadosImperiais()
-
-      function soldadosStormcloaks() {
-
-        fetch(`/usuarios/soldadosStormcloaks/`, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            soldadoServer: sessionStorage.ID_USUARIO
-          })
-        }).then(function (resposta) {
-
-          console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            resposta.json().then(function(data) {
-              p_stormcloaks.innerHTML = data.faccao
-            }
-          );
-        } 
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-
-      }
-      soldadosStormcloaks()
-
-      function classeMaisUsada() {
-
-        fetch(`/usuarios/classeMaisUsada/`, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            soldadoServer: sessionStorage.ID_USUARIO
-          })
-        }).then(function (resposta) {
-
-          console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            resposta.json().then(function(data) {
-              p_classeMaisUsada.innerHTML = data.classe
-            }
-          );
-        } 
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-
-      }
-      classeMaisUsada()
-
-      function magiaMaisUsada() {
-
-        fetch(`/usuarios/magiaMaisUsada/`, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            soldadoServer: sessionStorage.ID_USUARIO
-          })
-        }).then(function (resposta) {
-
-          console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            resposta.json().then(function(data) {
-              p_magiaMaisUsada.innerHTML = data.magia
-            }
-          );
-        } 
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-
-      }
-      magiaMaisUsada()
-
       function racaPredominante() {
-
         fetch(`/usuarios/racaPredominante/`, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            soldadoServer: sessionStorage.ID_USUARIO
-          })
-        }).then(function (resposta) {
+          method: "GET",
+        })
+          .then(function (resposta) {
 
-          console.log("resposta: ", resposta);
+            console.log("resposta: ", resposta);
 
-          if (resposta.ok) {
-            resposta.json().then(function(data) {
-              p_racaPredominante.innerHTML = data.raca
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                p_racaPredominante.innerHTML = data.raca
+              }
+              );
             }
-          );
-        } 
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
 
       }
       racaPredominante()
+
+      function soldadosImperiais() {
+        fetch(`/usuarios/soldadosImperiais/`, {
+          method: "GET",
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_imperio.innerHTML = data.faccao
+            }
+          );
+        }
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+      
+    }
+    soldadosImperiais();
+      
+      function soldadosStormcloaks() {
+        fetch(`/usuarios/soldadosStormcloaks/`, {
+          method: "GET",
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_stormcloaks.innerHTML = data.faccao
+            }
+          );
+        }
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+      
+    }
+    soldadosStormcloaks();
+    
+    
+    function classeMaisUsada() {
+      fetch(`/usuarios/classeMaisUsada/`, {
+        method: "GET",
+      })
+      .then(function (resposta) {
+        
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_classeMaisUsada.innerHTML = data.classe
+            }
+            );
+          }
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+        
+      }
+      classeMaisUsada();
+      
+      function magiaMaisUsada() {
+        fetch(`/usuarios/magiaMaisUsada/`, {
+          method: "GET",
+        })
+        .then(function (resposta) {
+          
+          console.log("resposta: ", resposta);
+          
+          if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_magiaMaisUsada.innerHTML = data.magia
+            }
+            );
+          }
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+        
+      }
+      magiaMaisUsada();
+      
       
       function voltarHome() {
         window.location.href = "index.html";
@@ -258,17 +230,17 @@
       function voltarDashboard() {
         window.location.href = "skyrimdle.html";
       };
-
+      
       function abrirPopup(msg) {
         document.getElementById("popup-msg").innerHTML = msg;
         document.getElementById("popup").style.display = "flex";
       };
-
+      
       function fecharPopup() {
         document.getElementById("popup").style.display = "none";
       };
-
+      
       nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
-
-
-    </script>
+      
+      
+      </script>
