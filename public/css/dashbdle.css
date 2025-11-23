@@ -375,7 +375,7 @@ select {
 }
 
 .info {
-    margin-top: 10px;
+    margin-top: -200px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -409,21 +409,23 @@ select {
     color: #1e4d92;
 }
 
-.grafico-grande {
-    width: 800px;
-    height: 450px;
-}
 
 .graficos {
     margin-top: 20px;
     display: flex;
-    gap: 390px;
+    gap: 60px;
 }
 
 .grafico {
     width: 50%;
-    height: 260px;
+    height: 360px;
 }
+
+.grafico-grande {
+    width: 600px;
+    height: 450px;
+}
+
 
 
 .escolha {

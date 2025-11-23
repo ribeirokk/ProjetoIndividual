@@ -36,112 +36,113 @@ function autenticar(req, res) {
 }
 
 function soldadosImperiais(req, res) {
-        usuarioModel.soldadosImperiais()
-            .then(function (resultadoSoldadosImperiais) {
-                console.log(`\nResultados encontrados: ${resultadoSoldadosImperiais.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoSoldadosImperiais)}`);
+    usuarioModel.soldadosImperiais()
+        .then(function (resultadoSoldadosImperiais) {
+            console.log(`\nResultados encontrados: ${resultadoSoldadosImperiais.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoSoldadosImperiais)}`);
 
-                if (resultadoSoldadosImperiais.length == 1) {
-                    res.json({
-                        faccao: resultadoSoldadosImperiais[0].faccao
-                    });
-                } else if (resultadoSoldadosImperiais.length == 0) {
-                    res.status(403).send("erro");
-                } 
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("\nHouve um Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    };
-    
+            if (resultadoSoldadosImperiais.length == 1) {
+                res.json({
+                    faccao: resultadoSoldadosImperiais[0].faccao
+                });
+            } else if (resultadoSoldadosImperiais.length == 0) {
+                res.status(403).send("erro");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+};
+
 function soldadosStormcloaks(req, res) {
 
-        usuarioModel.soldadosStormcloaks()
-            .then(function (resultadoSoldadosStormcloaks) {
-                console.log(`\nResultados encontrados: ${resultadoSoldadosStormcloaks.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoSoldadosStormcloaks)}`);
+    usuarioModel.soldadosStormcloaks()
+        .then(function (resultadoSoldadosStormcloaks) {
+            console.log(`\nResultados encontrados: ${resultadoSoldadosStormcloaks.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoSoldadosStormcloaks)}`);
 
-                if (resultadoSoldadosStormcloaks.length == 1) {
-                    res.json({
-                        faccao: resultadoSoldadosStormcloaks[0].faccao
-                    });
-                } else if (resultadoSoldadosStormcloaks.length == 0) {
-                    res.status(403).send("erro");
-                } 
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("\nHouve um Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    };
+            if (resultadoSoldadosStormcloaks.length == 1) {
+                res.json({
+                    faccao: resultadoSoldadosStormcloaks[0].faccao
+                });
+            } else if (resultadoSoldadosStormcloaks.length == 0) {
+                res.status(403).send("erro");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+};
 
 
 function magiaMaisUsada(req, res) {
 
-        usuarioModel.magiaMaisUsada()
-            .then(function (resultadoMagiaMaisUsada) {
-                console.log(`\nResultados encontrados: ${resultadoMagiaMaisUsada.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoMagiaMaisUsada)}`);
+    usuarioModel.magiaMaisUsada()
+        .then(function (resultadoMagiaMaisUsada) {
+            console.log(`\nResultados encontrados: ${resultadoMagiaMaisUsada.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoMagiaMaisUsada)}`);
 
-                if (resultadoMagiaMaisUsada.length == 1) {
-                    res.json({
-                        magia: resultadoMagiaMaisUsada[0].magia
-                    });
-                } else if (resultadoMagiaMaisUsada.length == 0) {
-                    res.status(403).send("erro");
-                } 
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("\nHouve um Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    };
+            if (resultadoMagiaMaisUsada.length == 1) {
+                res.json({
+                    magia: resultadoMagiaMaisUsada[0].magia
+                });
+            } else if (resultadoMagiaMaisUsada.length == 0) {
+                res.status(403).send("erro");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+};
 
 function classeMaisUsada(req, res) {
-        usuarioModel.classeMaisUsada()
-            .then(function (resultadoClasseMaisUsada) {
-                console.log(`\nResultados encontrados: ${resultadoClasseMaisUsada.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoClasseMaisUsada)}`);
+    usuarioModel.classeMaisUsada()
+        .then(function (resultadoClasseMaisUsada) {
+            console.log(`\nResultados encontrados: ${resultadoClasseMaisUsada.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoClasseMaisUsada)}`);
 
-                if (resultadoClasseMaisUsada.length == 1) {
-                    res.json({
-                        classe: resultadoClasseMaisUsada[0].classe
-                    });
-                } else if (resultadoClasseMaisUsada.length == 0) {
-                    res.status(403).send("erro");
-                } 
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("\nHouve um Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    };
+            if (resultadoClasseMaisUsada.length == 1) {
+                res.json({
+                    classe: resultadoClasseMaisUsada[0].classe
+                });
+            } else if (resultadoClasseMaisUsada.length == 0) {
+                res.status(403).send("erro");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+};
 
 function racaPredominante(req, res) {
-        usuarioModel.racaPredominante()
-            .then(function (resultadoRacaPredominante) {
-                console.log(`\nResultados encontrados: ${resultadoRacaPredominante.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoRacaPredominante)}`);
+    usuarioModel.racaPredominante()
+        .then(function (resultadoRacaPredominante) {
+            console.log(`\nResultados encontrados: ${resultadoRacaPredominante.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoRacaPredominante)}`);
 
-                if (resultadoRacaPredominante.length == 1) {
-                    res.json({
-                        raca: resultadoRacaPredominante[0].raca
-                    });
-                } else if (resultadoRacaPredominante.length == 0) {
-                    res.status(403).send("erro");
-                } 
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("\nHouve um Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    };
+            if (resultadoRacaPredominante.length == 1) {
+                res.json({
+                    raca: resultadoRacaPredominante[0].raca
+                });
+            } else if (resultadoRacaPredominante.length == 0) {
+                res.status(403).send("erro");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+};
+
 
 function cadastrar(req, res) {
 
@@ -207,4 +208,3 @@ module.exports = {
     classeMaisUsada,
     racaPredominante,
 };
-    

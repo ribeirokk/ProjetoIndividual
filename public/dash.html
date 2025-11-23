@@ -25,7 +25,7 @@
     <div class="dash-escolha" onclick="dashMundo()">
       <p>| Mundo de Skyrim |</p>
     </div>
-    <div class="dash-escolha" onclick="dashDle()">
+    <div class="dash-escolha" onclick="dashDLE()">
       <p>| Dados DLE |</p>
     </div>
   </div>
@@ -74,49 +74,51 @@
       </div>
 
 
-      <div class="grafico-inferior">
-        <div class="grafico-grande"><canvas id="temperatura"></canvas></div>
+      <div class="grafico-superior">
+        <div class="grafico-grande"><canvas id="grafico_build"></canvas></div>
       </div>
       <div class="graficos">
-        <div class="grafico"><canvas id="g1"></canvas></div>
-        <div class="grafico"><canvas id="g2"></canvas></div>
+        <div class="grafico"><canvas id="grafico_raca"></canvas></div>
+        <div class="grafico"><canvas id="grafico_faccao"></canvas></div>
       </div>
 
     </div>
   </div>
 
   <!--footer inicio-->
-<footer>
-  <div class="footer-container">
+  <footer>
+    <div class="footer-container">
 
-    <div class="facecard">
-      <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
-      <div>
-        <h1>Luiz Vittor Marques Ribeiro</h1>
-        <p>
-          Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
-        </p>
+      <div class="facecard">
+        <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
+        <div>
+          <h1>Luiz Vittor Marques Ribeiro</h1>
+          <p>
+            Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
+          </p>
+        </div>
+      </div>
+      <div class="redes-sociais">
+        <a href="https://www.linkedin.com" target="_blank">
+          <img src="./assets/img/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com" target="_blank">
+          <img src="./assets/img/github.webp" alt="GitHub" />
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png"
+            alt="instagram" />
+        </a>
+        <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome"
+          target="_blank">
+          <img src="./assets/img/bethesda.webp" alt="GitHub" />
+        </a>
       </div>
     </div>
-    <div class="redes-sociais">
-      <a href="https://www.linkedin.com" target="_blank">
-        <img src="./assets/img/linkedin.png" alt="LinkedIn" />
-      </a>
-      <a href="https://github.com" target="_blank">
-        <img src="./assets/img/github.webp" alt="GitHub" />
-      </a>
-      <a href="https://instagram.com" target="_blank">
-        <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png" alt="instagram" />
-      </a>
-      <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome" target="_blank">
-        <img src="./assets/img/bethesda.webp" alt="GitHub" />
-      </a>
-    </div>
-  </div>
-  <p id="copyright">
-    “May the divines guide you.” — Skyrim © 2025 Bethesda
-  </p>
-</footer>
+    <p id="copyright">
+      “May the divines guide you.” — Skyrim © 2025 Bethesda
+    </p>
+  </footer>
 
   <div id="popup" class="popup" style="display: none;">
     <div class="popup-content">
@@ -158,19 +160,19 @@
 
             console.log("resposta: ", resposta);
 
-          if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_imperio.innerHTML = data.faccao
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                p_imperio.innerHTML = data.faccao
+              }
+              );
             }
-          );
-        }
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-      
-    }
-    soldadosImperiais();
-      
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+      }
+      soldadosImperiais();
+
       function soldadosStormcloaks() {
         fetch(`/usuarios/soldadosStormcloaks/`, {
           method: "GET",
@@ -179,63 +181,63 @@
 
             console.log("resposta: ", resposta);
 
-          if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_stormcloaks.innerHTML = data.faccao
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                p_stormcloaks.innerHTML = data.faccao
+              }
+              );
             }
-          );
-        }
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-      
-    }
-    soldadosStormcloaks();
-    
-    
-    function classeMaisUsada() {
-      fetch(`/usuarios/classeMaisUsada/`, {
-        method: "GET",
-      })
-      .then(function (resposta) {
-        
-        console.log("resposta: ", resposta);
-        
-        if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_classeMaisUsada.innerHTML = data.classe
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+      }
+      soldadosStormcloaks();
+
+
+      function classeMaisUsada() {
+        fetch(`/usuarios/classeMaisUsada/`, {
+          method: "GET",
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                p_classeMaisUsada.innerHTML = data.classe
+              }
+              );
             }
-            );
-          }
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-        
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
       }
       classeMaisUsada();
-      
+
       function magiaMaisUsada() {
         fetch(`/usuarios/magiaMaisUsada/`, {
           method: "GET",
         })
-        .then(function (resposta) {
-          
-          console.log("resposta: ", resposta);
-          
-          if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_magiaMaisUsada.innerHTML = data.magia
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                p_magiaMaisUsada.innerHTML = data.magia
+              }
+              );
             }
-            );
-          }
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-        
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
       }
       magiaMaisUsada();
-      
-      
+
+
       function voltarHome() {
         window.location.href = "index.html";
       }
@@ -243,17 +245,193 @@
       function voltarDashboard() {
         window.location.href = "skyrimdle.html";
       };
-      
+
       function abrirPopup(msg) {
         document.getElementById("popup-msg").innerHTML = msg;
         document.getElementById("popup").style.display = "flex";
       };
-      
+
       function fecharPopup() {
         document.getElementById("popup").style.display = "none";
       };
-      
+
       nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
-      
-      
-      </script>
+
+        function obterFaccao() {
+        fetch(`/partida/obterFaccao/`, {
+        })
+          .then(function (resposta) { 
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                plotarFaccao(data)
+                console.log('sexo', data)
+              }
+              );
+            }
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+      }
+      obterFaccao()
+
+
+      function plotarFaccao(dadosFaccao) {
+        var faccaoLabel = [];
+        var faccaoData = [];
+
+        for (var i = 0; i < dadosFaccao.length; i++) {
+          var faccaoJson = dadosFaccao[i].faccao;
+          var faccaoQuantidadeJson = dadosFaccao[i].quantidade_repeticoes;
+          faccaoLabel.push( faccaoJson );
+          faccaoData.push( faccaoQuantidadeJson );
+        }
+        
+        
+        var dadosGrafico = {
+          labels: faccaoLabel,
+          datasets: [{
+          label: 'Imperio',
+            data: faccaoData
+          }]
+        }
+
+      const configGrafico = {
+        type: 'bar',
+        data: dadosGrafico,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+        const id_grafico = document.getElementById("grafico_faccao")
+
+        const graficoFaccao = new Chart (id_grafico, configGrafico)
+      }
+
+      function obterClasse() {
+        fetch(`/partida/obterClasse/`, {
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                plotarClasse(data)
+                console.log('sexo', data)
+              }
+              );
+            }
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+      }
+      obterClasse()
+
+      function plotarClasse(dadosClasse) {
+
+        var classeLabel = []
+        var classeData = []
+
+        for (var i = 0; i < dadosClasse.length; i++) {
+          var classesJson = dadosClasse[i].classe;
+          var classesQtdJson = dadosClasse[i].quantidade_repeticoes;
+          classeLabel.push(classesJson);
+          classeData.push(classesQtdJson);
+
+
+        }
+
+        var dadosGrafico = {
+          labels: classeLabel,
+          datasets: [{
+            label: 'Popularidade das Builds',
+            data: classeData,
+            borderWidth: 1
+          }]
+        }
+        const configGrafico = {
+          type: 'bar',
+          data: dadosGrafico,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        };
+        const id_grafico = document.getElementById("grafico_build")
+
+        const graficoClasse = new Chart (id_grafico, configGrafico)
+      }
+
+
+      function obterRaca() {
+        fetch(`/partida/obterRaca/`, {
+        })
+          .then(function (resposta) { 
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                plotarRaca(data)
+                console.log('sexo', data)
+              }
+              );
+            }
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+      }
+      obterRaca()
+
+
+      function plotarRaca(dadosRaca) {
+        var racaLabel = [];
+        var racaData = [];
+
+        for (var i = 0; i < dadosRaca.length; i++) {
+          var racaJson = dadosRaca[i].raca;
+          var racaQuantidadeJson = dadosRaca[i].quantidade_repeticoes;
+          racaLabel.push( racaJson );
+          racaData.push( racaQuantidadeJson );
+        }
+        
+        
+        var dadosGrafico = {
+          labels: racaLabel,
+          datasets: [{
+            data: racaData
+          }]
+        }
+
+      const configGrafico = {
+        type: 'pie',
+        data: dadosGrafico,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+        const id_grafico = document.getElementById("grafico_raca")
+
+        const graficoRaca = new Chart (id_grafico, configGrafico)
+      }
+      function dashDLE() {
+        window.location.href = "dashDLE.html";
+      }
+
+      function dashMundo() {
+        window.location.href = "dash.html";
+      } 
+    </script>

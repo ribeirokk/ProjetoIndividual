@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skyrim - Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="./css/dashbdle.css">
+</head>
+
+<body>
+  <!--header inicio-->
+  <header>
+    <nav>
+      <a class="logo" href="/">Skyrim</a>
+
+      <ul class="nav-list">
+      </ul>
+
+    </nav>
+  </header>
+  <!--header fim-->
+  <div class="escolha">
+    <div class="dash-escolha" onclick="dashMundo()">
+      <p>| Mundo de Skyrim |</p>
+    </div>
+    <div class="dash-escolha" onclick="dashDLE()">
+      <p>| Dados DLE |</p>
+    </div>
+  </div>
+  <div class="dashboard">
+    <div class="lateral">
+      <div class="nav-action">
+        <h2>Olá, <span id="nome_usuario"></span></h2>
+        <img class="nav-img" src="./assets/img/cadastro/imperial.jpg" alt="icon imperial">
+      </div>
+
+      <!--       <h2>Câmara 1 <br> <br>Sensor selecionado:</h2>
+      <div class="legenda">
+        <p>
+          <span style="color: rgb(0, 119, 255)">Ideal:</span> -18°C a -21°C
+        </p>
+        <p><span style="color: green">Boa:</span> -22°C a -39°C</p>
+        <p><span style="color: red">Crítica:</span> acima de -18°C</p>
+      </div> -->
+
+      <button class="botao" onclick="voltarDashboard()">Voltar</button>
+
+    </div>
+
+    <div class="container">
+      <div class="info">
+        <div class="box">
+          <p>Partidas Jogadas</p>
+          <p id="p_classeMaisUsada" class="metrica">---</p>
+        </div>
+        <div class="box">
+          <p>Partidas Ganhas</p>
+          <p id="p_magiaMaisUsada" class="metrica">---</p>
+        </div>
+        <div class="box">
+          <p>Aproveitamento </p>
+          <p id="p_racaPredominante" class="metrica">---</p>
+        </div>
+      </div>
+
+
+      <div class="graficos">
+        <div class="grafico-grande"><canvas id="grafico_build"></canvas></div>      
+        <div class="grafico"><canvas id="grafico_raca"></canvas></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--footer inicio-->
+<footer>
+  <div class="footer-container">
+
+    <div class="facecard">
+      <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
+      <div>
+        <h1>Luiz Vittor Marques Ribeiro</h1>
+        <p>
+          Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
+        </p>
+      </div>
+    </div>
+    <div class="redes-sociais">
+      <a href="https://www.linkedin.com" target="_blank">
+        <img src="./assets/img/linkedin.png" alt="LinkedIn" />
+      </a>
+      <a href="https://github.com" target="_blank">
+        <img src="./assets/img/github.webp" alt="GitHub" />
+      </a>
+      <a href="https://instagram.com" target="_blank">
+        <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png" alt="instagram" />
+      </a>
+      <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome" target="_blank">
+        <img src="./assets/img/bethesda.webp" alt="GitHub" />
+      </a>
+    </div>
+  </div>
+  <p id="copyright">
+    “May the divines guide you.” — Skyrim © 2025 Bethesda
+  </p>
+</footer>
+
+  <div id="popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <h2 id="popup-msg"></h2>
+      <button onclick="fecharPopup()">OK</button>
+    </div>
+
+
+    <!--footer fim-->
+
+    <script>
+
+      function racaPredominante() {
+        fetch(`/usuarios/racaPredominante/`, {
+          method: "GET",
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              resposta.json().then(function (data) {
+                p_racaPredominante.innerHTML = data.raca
+              }
+              );
+            }
+          }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+      }
+      racaPredominante()
+
+      function soldadosImperiais() {
+        fetch(`/usuarios/soldadosImperiais/`, {
+          method: "GET",
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_imperio.innerHTML = data.faccao
+            }
+          );
+        }
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+      
+    }
+    soldadosImperiais();
+      
+      function soldadosStormcloaks() {
+        fetch(`/usuarios/soldadosStormcloaks/`, {
+          method: "GET",
+        })
+          .then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_stormcloaks.innerHTML = data.faccao
+            }
+          );
+        }
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+      
+    }
+    soldadosStormcloaks();
+    
+    
+    function classeMaisUsada() {
+      fetch(`/usuarios/classeMaisUsada/`, {
+        method: "GET",
+      })
+      .then(function (resposta) {
+        
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_classeMaisUsada.innerHTML = data.classe
+            }
+            );
+          }
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+        
+      }
+      classeMaisUsada();
+      
+      function magiaMaisUsada() {
+        fetch(`/usuarios/magiaMaisUsada/`, {
+          method: "GET",
+        })
+        .then(function (resposta) {
+          
+          console.log("resposta: ", resposta);
+          
+          if (resposta.ok) {
+            resposta.json().then(function (data) {
+              p_magiaMaisUsada.innerHTML = data.magia
+            }
+            );
+          }
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+        
+      }
+      magiaMaisUsada();
+      
+      
+      function voltarHome() {
+        window.location.href = "index.html";
+      }
+
+      function voltarDashboard() {
+        window.location.href = "skyrimdle.html";
+      };
+      
+      function abrirPopup(msg) {
+        document.getElementById("popup-msg").innerHTML = msg;
+        document.getElementById("popup").style.display = "flex";
+      };
+      
+      function fecharPopup() {
+        document.getElementById("popup").style.display = "none";
+      };
+      
+      nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
+      
+      
+  const ctxBuild = document.getElementById('grafico_build').getContext('2d');
+
+  const graficoBuild = new Chart(ctxBuild, {
+    type: 'bar',
+    data: {
+      labels: ['Guerreiro', 'Mago', 'Arqueiro', 'Assassino', 'Tank', 'Curandeiro'],
+      datasets: [{
+        label: 'Popularidade das Builds',
+        data: [14, 22, 18, 10, 7, 12],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctxRaca = document.getElementById('grafico_raca').getContext('2d');
+
+  const graficoRaca = new Chart(ctxRaca, {
+    type: 'doughnut',
+    data: {
+      labels: ['Nórdico', 'Elfo Superior', 'Khajiit', 'Orc', 'Argoniano'],
+      datasets: [{
+        data: [35, 20, 15, 10, 20]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+
+function dashDLE() {
+    window.location.href = "dashDLE.html"; 
+}
+
+function dashMundo() {
+    window.location.href = "dash.html"; 
+}
+
+      </script>
