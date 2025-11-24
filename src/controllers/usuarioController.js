@@ -19,6 +19,7 @@ function autenticar(req, res) {
                         id: resultadoAutenticar[0].id,
                         nome: resultadoAutenticar[0].nome,
                         email: resultadoAutenticar[0].email,
+                        raca: resultadoAutenticar[0].raca,
                         faccao: resultadoAutenticar[0].faccao
                     });
                 } else if (resultadoAutenticar.length == 0) {

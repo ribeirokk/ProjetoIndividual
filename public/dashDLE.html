@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -33,7 +33,8 @@
     <div class="lateral">
       <div class="nav-action">
         <h2>Olá, <span id="nome_usuario"></span></h2>
-        <img class="nav-img" src="./assets/img/cadastro/imperial.jpg" alt="icon imperial">
+        <img class="nav-img" id="img_raca" src="" alt="Foto da Raça">
+
       </div>
 
       <!--       <h2>Câmara 1 <br> <br>Sensor selecionado:</h2>
@@ -68,7 +69,7 @@
 
       <div class="graficos">
         <div class="grafico"><canvas id="grafico_vitoriaderrota"></canvas></div>
-        <div class="grafico-grande"><canvas id="graficoTentativasPartida"></canvas></div> 
+        <div class="grafico-grande"><canvas id="graficoTentativasPartida"></canvas></div>
       </div>
 
     </div>
@@ -186,7 +187,6 @@
           });
       }
 
-      obterDadosGrafico();
 
 
       function plotarGrafico(resultado) {
@@ -215,6 +215,7 @@
           type: 'bar',
           data: dados,
           options: {
+            animation: false,
             plugins: {
               legend: {
                 labels: {
@@ -240,53 +241,55 @@
         var myChart = new Chart(ctx, config);
       }
 
-function vitoriaDerrota() {
-  const id = sessionStorage.ID_USUARIO;
+      function vitoriaDerrota() {
+        const id = sessionStorage.ID_USUARIO;
 
-  fetch(`/partida/partidasJogadas/${id}`)
-    .then(res => res.json())
-    .then(dadosJogadas => {
+        fetch(`/partida/partidasJogadas/${id}`)
+          .then(res => res.json())
+          .then(dadosJogadas => {
 
-      const totalJogadas = dadosJogadas.partidasJogadas;
+            const totalJogadas = dadosJogadas.partidasJogadas;
 
-      fetch(`/partida/partidasGanhas/${id}`)
-        .then(res => res.json())
-        .then(dadosGanhas => {
+            fetch(`/partida/partidasGanhas/${id}`)
+              .then(res => res.json())
+              .then(dadosGanhas => {
 
-          const totalGanhas = dadosGanhas.partidasGanhas;
-          const totalDerrotas = totalJogadas - totalGanhas;
+                const totalGanhas = dadosGanhas.partidasGanhas;
+                const totalDerrotas = totalJogadas - totalGanhas;
 
-          plotarPizza(totalGanhas, totalDerrotas);
+                plotarPizza(totalGanhas, totalDerrotas);
 
-        });
+              });
 
-    })
-    .catch(err => console.error("Erro no gráfico de pizza:", err));
-}
-
-vitoriaDerrota();
-
-function plotarPizza(vitorias, derrotas) {
-  const ctx = document.getElementById('grafico_vitoriaderrota');
-
-  new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: ['Vitórias  ', 'Derrotas'],
-      datasets: [{
-        data: [vitorias, derrotas],
-        backgroundColor: ['white', 'black']
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          labels: { color: '#fff' }
-        }
+          })
+          .catch(err => console.error("Erro no gráfico de pizza:", err));
       }
-    }
-  });
-}
+      window.onload = () => {
+        obterDadosGrafico();
+        vitoriaDerrota();
+      };
+
+      function plotarPizza(vitorias, derrotas) {
+        const ctx = document.getElementById('grafico_vitoriaderrota');
+
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Vitórias  ', 'Derrotas'],
+            datasets: [{
+              data: [vitorias, derrotas],
+              backgroundColor: ['white', 'black']
+            }]
+          },
+          options: {
+            plugins: {
+              legend: {
+                labels: { color: '#fff' }
+              }
+            }
+          }
+        });
+      }
 
       function dashDLE() {
         window.location.href = "dashDLE.html";
@@ -294,7 +297,9 @@ function plotarPizza(vitorias, derrotas) {
 
       function dashMundo() {
         window.location.href = "dash.html";
-      }   
+      }
 
-  
+      const raca = sessionStorage.RACA_USUARIO;
+      document.getElementById("img_raca").src = `../assets/img/cadastro/${raca}.jpg`;
+
     </script>

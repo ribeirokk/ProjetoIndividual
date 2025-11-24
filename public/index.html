@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Elder Scrolls</title>
-  <link rel="stylesheet" href="./css/estilo.css"/>
-  <link rel="icon" href="./assets/img/skyrimIcon.png"/>
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/img/skyrimIcon.png" />
 </head>
 
-<body>  
+<body>
 
   <header>
     <nav>
@@ -25,11 +25,11 @@
 
       <div class="nav-action">
         <img class="nav-img" src="./assets/img/imperioIcon.png" alt="icon imperial">
-    <a href="escolha.html" style="display: flex;">
-      <button class="nav-button">Escolha Seu Lado</button>
-      <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
-    </a>
-      
+        <a href="escolha.html" style="display: flex;">
+          <button class="nav-button">Escolha Seu Lado</button>
+          <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
+        </a>
+
       </div>
     </nav>
   </header>
@@ -54,8 +54,7 @@
           De onde estou, posso quase sentir os ventos que sopram das ilhas dos Altmer, no longínquo oeste, <br>
           até os pântanos sufocantes de Black Marsh, lá no leste. Cada província tem seus próprios deuses, <br>
           costumes e conflitos… e, acredite, todos acham que são os verdadeiros herdeiros dessa terra.</p> <br>
-        <img src="./assets/img/mapaTamriel.png" alt=""
-          style="display: flex; margin-left: 80px; margin-top: 40px;">
+        <img src="./assets/img/mapaTamriel.png" alt="" style="display: flex; margin-left: 80px; margin-top: 40px;">
         <p style="margin-left: -1510px; font-size: 30px;">| Mapa de Tamriel</p>
         <p
           style="font-size: 30px; display: flex; text-align: left; justify-content: right; margin-top: -620px; margin-right: 90px;">
@@ -85,20 +84,23 @@
           salão dos heróis.
         </p>
         <br> <br> <br> <br> <br>
+        <p style="font-size: 30px; display: flex; justify-content: right; margin-right: 700px;" >|Mapa de Skyrim</p>
         <p style="font-size: 30px; display: flex; margin-left: 80px; text-align: left;">
           Mas Skyrim não está em paz. <br> Os Imperiais tentam manter a província sob o controle do Império, <br>
           enquanto os Stormcloaks, liderados por Ulfric de Ventalia, <br> lutam por liberdade e tradição. <br> O sangue
           nórdico ferve — e o chão se mancha de vermelho <br> nas duas margens dessa guerra.
         </p>
         <img src="./assets/img/mapaSkyrim.png" alt=""
-          style="display: flex; justify-self: right; margin-right: 80px; margin-top: -310px;">
+          style="display: flex;     margin-left: auto; /* joga pra direita */
+    margin-right: 100px; margin-top: -310px;">
       </div>
     </section>
 
     <section class="mundo-texto">
 
       <div class="texto-container">
-        <p style="font-size: 80px; display: flex; margin-left: 0px; margin-bottom: 20px;">As Principais Cidades de Skyrim</p>
+        <p style="font-size: 80px; display: flex; margin-left: 0px; margin-bottom: 20px;">As Principais Cidades de
+          Skyrim</p>
         <hr style="width: 100%;">
         <p style="font-size: 30px; display: flex; margin-left: 0px; text-align: left;">Skyrim é uma terra vasta e
           antiga, dividida entre montanhas geladas, vales férteis e ruínas dos tempos dos dragões. Cada uma de suas
@@ -106,97 +108,90 @@
         <br> <br>
 
         <section class="carrossel">
+          <button class="btn-carrossel btn-esq" onclick="voltar()">◀</button>
 
-          <div class="carrossel-container" id="carrossel">
-            <div class="slide active">
-              <img src="./assets/img/windhelm.png" alt="windhelm">
-              <p style="font-size: 60px;">Windhelm</p>
-              <hr>
-              <p>A cidade mais antiga de Skyrim, moldada na pedra pelos primeiros homens. <br> Fria, imponente e
-                dividida — é o reduto dos Stormcloaks, liderados por Ulfric. <br>Suas ruas de gelo carregam o peso do
-                orgulho nórdico <br>e o amargor das divisões raciais entre nórdicos e dunmer.</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/whiterun.png" alt="whiterun">
-              <p style="font-size: 60px;">Whiterun</p>
-              <hr>
-              <p>Localizada no coração de Skyrim, Whiterun é um refúgio entre as montanhas e os ventos gelados. <br>
-                Governada pelo Jarl Balgruuf, é uma cidade de comércio, honra e guerreiros. <br>No topo da colina
-                ergue-se o palácio Dragonsreach, <br> outrora usado para capturar dragões — agora, o símbolo de poder da
-                cidade.</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/winterhold.png" alt="winterhold">
-              <p style="font-size: 60px;">Winterhold</p>
-              <hr>
-              <p>Antigamente, uma das maiores cidades de Skyrim. Agora, apenas ruínas à beira de um penhasco. <br> O
-                Colégio de Winterhold ainda permanece, lar dos magos e estudiosos de toda Tamriel <br> Mas os aldeões
-                culpam a magia pela queda da cidade no mar gélido.</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/markarth.png" alt="markarth">
-              <p style="font-size: 60px;">Markarth</p>
-              <hr>
-              <p>Esculpida diretamente nas ruínas de uma antiga cidade dwemer, Markarth é uma mistura de maravilha e
-                perigo. <br> O brilho das pedras anciãs esconde conflitos entre os habitantes nórdicos e os Forsworn,
-                <br> rebeldes que afirmam ser os verdadeiros donos das terras Reach.
-              </p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/solitude.png" alt="solitude">
-              <p style="font-size: 60px;">Solitude</p>
-              <hr>
-              <p>Capital do reino e sede do poder imperial em Skyrim. <br> Construída sobre um arco de pedra colossal,
-                Solitude é o centro da cultura e da política, <br> lar do Castelo Dourado e da famosa Companhia dos
-                Bardos. <br> Mas por trás de sua beleza, há intrigas e a fria sombra da guerra civil..</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/riften.png" alt="riften">
-              <p style="font-size: 60px;">Riften</p>
-              <hr>
-              <p>Localizada ao sul, entre lagos e florestas, Riften é uma cidade de contrastes. <br> No topo, o Jarl e
-                os nobres governam; abaixo, nas sombras, a Guilda dos Ladrões comanda o submundo. <br> Seus canais e
-                vielas são tão traiçoeiros quanto fascinantes.</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/dawnstar.png" alt="dawnstar">
-              <p style="font-size: 60px;">Dawnstar</p>
-              <hr>
-              <p>Um porto gelado e povoado por sonhos inquietos. <br> Os habitantes de Dawnstar são assombrados por
-                pesadelos enviados pela misteriosa Mão de Vaermina. <br>Apesar disso, é uma cidade vital, ponto de
-                passagem de mercadores e marinheiros que enfrentam os mares do norte.</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/falkreath.png" alt="falkreath">
-              <p style="font-size: 60px;">Falkreath</p>
-              <hr>
-              <p>Uma cidade envolta em névoas e cercada por florestas. <br> Conhecida por seus grandes cemitérios,
-                Falkreath é silenciosa e melancólica, lar de caçadores e lenhadores. <br> Há beleza e paz em suas matas
-                — mas também segredos que preferem permanecer enterrados.</p>
-            </div>
-
-            <div class="slide">
-              <img src="./assets/img/morthal.png" alt="morthal">
-              <p style="font-size: 60px;">Morthal</p>
-              <hr>
-              <p>Assentada nos pântanos do norte, Morthal vive isolada do resto do mundo. <br> Poucos a visitam, e menos
-                ainda ficam. É uma cidade de superstições e bruxarias, onde o véu <br>entre o mundo dos vivos e o dos
-                mortos parece mais fino que em qualquer outro lugar de Skyrim.</p>
-            </div>
+          <div class="slide" id="slide0">
+            <img src="./assets/img/solitude.png">
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Solitude (Haafingar):</strong> Capital política de Skyrim e sede do Thalmor local em alguns
+              enredos, Solitude é elegante, forte e marítima — com um grande porto, arquitetura monumental e uma
+              atmosfera de poder e intriga.
+            </p>
           </div>
 
+          <div class="slide" id="slide1" style="display:none;">
+            <img src="./assets/img/markarth.png">
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Markarth (The Reach):</strong> Cidade construída nas paredes de prata de um antigo forte dwemer,
+              Markarth tem ruas esculpidas na pedra, uma população desconfiada e conflitos constantes por minas e
+              territórios.
+            </p>
+          </div>
 
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-      </div>
-      <hr>
+          <div class="slide" id="slide2" style="display:none;">
+            <img src="./assets/img/whiterun.png">
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Whiterun (Whiterun Hold):</strong> Local central e de fácil acesso, Whiterun é um próspero
+              entreposto comercial com grande mercado ao ar livre e o imponente Castelo do Jarl (Dragonsreach), ponto de
+              encontro para viajantes e mercadores.
+            </p>
+          </div>
+
+          <div class="slide" id="slide3" style="display:none;">
+            <img src="./assets/img/windhelm.png">
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Windhelm (Eastmarch):</strong> Uma das cidades mais antigas, de clima áspero e marcada por tensões
+              políticas e sociais; Windhelm é sombria, com ruas de pedra, tradição nord e forte presença militar.
+            </p>
+          </div>
+
+          <div class="slide" id="slide4" style="display:none;">
+            <img src="./assets/img/riften.png">
+
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Riften (The Rift):</strong> Cidade lagunar cercada por pântanos e florestas, conhecida por seu
+              mercado flutuante e pela Guilda dos Ladrões; mistura riqueza e criminalidade em ambiente úmido e
+              pitoresco.
+            </p>
+          </div>
+
+          <div class="slide" id="slide5" style="display:none;">
+            <img src="./assets/img/falkreath.png">
+
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Falkreath (Falkreath Hold):</strong> Pequena e cercada por florestas densas, Falkreath tem clima
+              melancólico e é famosa por seus cemitérios e tradições funerárias; comunidade tranquila e intimista.
+            </p>
+          </div>
+
+          <div class="slide" id="slide6" style="display:none;">
+            <img src="./assets/img/morthal.png">
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Morthal (Hjaalmarch):</strong> Cidade pantanosa e silenciosa, envolta em mistério e lendas;
+              Morthal tem clima nebuloso, arquitetura simples e histórias de feitiçaria e acontecimentos estranhos.
+            </p>
+          </div>
+
+          <div class="slide" id="slide7" style="display:none;">
+            <img src="./assets/img/dawnstar.png">
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Dawnstar (The Pale):</strong> Porto gelado e cidade costeira conhecida por ataques de monstros e
+              por um grande farol; Dawnstar tem um ar de cidade de fronteira, com mineradoras e pescadores endurecidos.
+            </p>
+          </div>
+
+          <div class="slide" id="slide8" style="display:none;">
+            <img src="./assets/img/winterhold.png">
+
+            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; margin-bottom:0.75rem;">
+              <strong>Winterhold (Winterhold Hold):</strong> Antiga cidade estudantil do Colégio de Winterhold, hoje
+              reduzida e isolada após um grande desastre; tem forte identidade mágica, vento cortante e ruínas que
+              lembram sua antiga grandeza.
+            </p>
+          </div>
+          <button class="btn-carrossel btn-dir" onclick="avancar()">▶</button>  
+        </section>
+        <hr>
     </section>
     </section>
 
@@ -329,16 +324,17 @@
           desse poder divino, <br>há apenas um viajante solitário... cruzando montanhas cobertas de neve, enfrentando
           Daedras, <br>bandidos e bestas antigas, carregando o peso de um destino que nem ele próprio pediu.
         </p>
-        <p ></p>
+        <p></p>
         <div>
           <p id="guildas"
             style="font-size: 150px; margin-top: 300px; display: flex; justify-content: end; margin-right: 200px;">
             Guildas</p>
           <div style="margin-top: -150px;">
             <img src="./assets/img/darkbrotherhood.png" alt="" class="darkbimg">
-            <p style="font-size: 70px; margin-top: 20px; display: flex; justify-content: start; margin-left: 100px;">Dark
+            <p style="font-size: 70px; margin-top: 20px; display: flex; justify-content: start; margin-left: 100px;">
+              Dark
               Brotherhood</p>
-              <p
+            <p
               style="font-size: 29px; display: flex; text-align: left; justify-content: right; margin-right: 150px; margin-top: -210px;">
               A Dark Brotherhood é uma organização de assassinos altamente treinados que atuam em contratos <br>de
               assassinato por toda a região de Tamriel. Eles operam através de santuários clandestinos e <br>têm uma
@@ -368,29 +364,40 @@
             <img style="width: 150px;" src="./assets/img/tg5.png" alt="">
             <img style="width: 170px;" src="./assets/img/tg6.png" alt="">
           </div>
-          <p class="bold" style="font-size: 70px; margin-top: 20px; display: flex; justify-content: center;">Thieves Guild
+          <p class="bold" style="font-size: 70px; margin-top: 20px; display: flex; justify-content: center;">Thieves
+            Guild
             Shadowmarks</p>
-          <p style="font-size: 29px; display: flex; text-align: left; justify-content: center; margin-left: 100px; margin-top: 50px; margin-left: 20px;">
+          <p
+            style="font-size: 29px; display: flex; text-align: left; justify-content: center; margin-left: 100px; margin-top: 50px; margin-left: 20px;">
             A Guilda dos Ladrões é uma organização de criminosos profissionais sediada em Riften que oferece apoio mútuo
             para <br>os empreendimentos ilegais de seus membros e clientes.
-            A base de operações da guilda é a Ragged Flagon <br> (O Frasco de Trapos), uma taverna escondida na extensa rede 
-            de esgotos e túneis conhecida como "A Ratway" <br> (A Passagem dos Ratos), localizada sob a cidade de Riften, a 
+            A base de operações da guilda é a Ragged Flagon <br> (O Frasco de Trapos), uma taverna escondida na extensa
+            rede
+            de esgotos e túneis conhecida como "A Ratway" <br> (A Passagem dos Ratos), localizada sob a cidade de
+            Riften, a
             cidade mais corrupta e controlada <br> por sindicatos de crime de Skyrim. <br> <br>
-            As marcas de sombra (Shadowmarks) são símbolos usados pela Guilda dos Ladrões de Skyrim para se comunicarem,<br>
-            marcando edifícios e locais com informações sobre seu potencial de uso, como se um local é seguro ou uma boa <br>
+            As marcas de sombra (Shadowmarks) são símbolos usados pela Guilda dos Ladrões de Skyrim para se
+            comunicarem,<br>
+            marcando edifícios e locais com informações sobre seu potencial de uso, como se um local é seguro ou uma boa
+            <br>
             oportunidade para roubar. Elas são esculpidas em locais como portas e passagens para que os membros da
             guilda <br> possam se orientar rapidamente e evitar perigos.<br>
           </p>
           <div style=" margin-top: 150px;">
             <p style="font-size: 70px; margin-top: 20px; display: flex; justify-content: end; margin-right: 500px;">
               College of Winterhold</p>
-          <p style="font-size: 29px; display: flex; text-align: left; justify-content: left; margin-left: 100px; margin-top: 50px; margin-left: 100px;">
-            A Guilda de Magos se extinguiu ao longo dos anos e o Colégio de Winterhold é seu equivalente em Skyrim, <br>
-             o Colégio é mal visto pela maioria dos Nórdicos e pelo próprio Jarl Korir de Winterhold, que os acusa de <br>
-              terem destruído a cidade. É o único lugar em Skyrim dedicado à educação e prática de artes arcanas, com <br>
+            <p
+              style="font-size: 29px; display: flex; text-align: left; justify-content: left; margin-left: 100px; margin-top: 50px; margin-left: 100px;">
+              A Guilda de Magos se extinguiu ao longo dos anos e o Colégio de Winterhold é seu equivalente em Skyrim,
+              <br>
+              o Colégio é mal visto pela maioria dos Nórdicos e pelo próprio Jarl Korir de Winterhold, que os acusa de
+              <br>
+              terem destruído a cidade. É o único lugar em Skyrim dedicado à educação e prática de artes arcanas, com
+              <br>
               professores de todas as disciplinas mágicas, um centro de treinamento e treinamento em itens mágicos. <br>
-              O colégio está localizado nos penhascos ao norte da cidade de Winterhold e pode ser ingressado pelo jogador. 
-          </p>
+              O colégio está localizado nos penhascos ao norte da cidade de Winterhold e pode ser ingressado pelo
+              jogador. 
+            </p>
             <img class="winterimg" src="./assets/img/whinterhold.png" alt="">
           </div>
         </div>
@@ -399,37 +406,39 @@
 
   </main>
 
-<footer>
-  <div class="footer-container">
+  <footer>
+    <div class="footer-container">
 
-    <div class="facecard">
-      <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
-      <div>
-        <h1>Luiz Vittor Marques Ribeiro</h1>
-        <p>
-          Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
-        </p>
+      <div class="facecard">
+        <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
+        <div>
+          <h1>Luiz Vittor Marques Ribeiro</h1>
+          <p>
+            Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
+          </p>
+        </div>
+      </div>
+      <div class="redes-sociais">
+        <a href="https://www.linkedin.com" target="_blank">
+          <img src="./assets/img/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com" target="_blank">
+          <img src="./assets/img/github.webp" alt="GitHub" />
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png"
+            alt="instagram" />
+        </a>
+        <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome"
+          target="_blank">
+          <img src="./assets/img/bethesda.webp" alt="GitHub" />
+        </a>
       </div>
     </div>
-    <div class="redes-sociais">
-      <a href="https://www.linkedin.com" target="_blank">
-        <img src="./assets/img/linkedin.png" alt="LinkedIn" />
-      </a>
-      <a href="https://github.com" target="_blank">
-        <img src="./assets/img/github.webp" alt="GitHub" />
-      </a>
-      <a href="https://instagram.com" target="_blank">
-        <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png" alt="instagram" />
-      </a>
-      <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome" target="_blank">
-        <img src="./assets/img/bethesda.webp" alt="GitHub" />
-      </a>
-    </div>
-  </div>
-  <p id="copyright">
-    “May the divines guide you.” — Skyrim © 2025 Bethesda
-  </p>
-</footer>
+    <p id="copyright">
+      “May the divines guide you.” — Skyrim © 2025 Bethesda
+    </p>
+  </footer>
 
 
 </body>
@@ -437,18 +446,25 @@
 </html>
 
 <script>
+  var slideAtual = 0;
+  var totalSlides = 9;
 
-  var carrossel = document.querySelector('#carrossel');
-  var slides = document.querySelectorAll('.slide');
-  var i = 0;
+  function mostrarSlide(n) {
+    for (var i = 0; i < totalSlides; i++) {
+      document.getElementById("slide" + i).style.display = "none";
+    }
+    document.getElementById("slide" + n).style.display = "block";
+  }
 
-  document.querySelector('.next').addEventListener('click', () => {
-    i = (i + 1) % slides.length;
-    carrossel.style.transform = `translateX(-${i * 100}%)`;
-  });
+  function avancar() {
+    slideAtual++;
+    if (slideAtual >= totalSlides) slideAtual = 0;
+    mostrarSlide(slideAtual);
+  }
 
-  document.querySelector('.prev').addEventListener('click', () => {
-    i = (i - 1 + slides.length) % slides.length;
-    carrossel.style.transform = `translateX(-${i * 100}%)`;
-  });
+  function voltar() {
+    slideAtual--;
+    if (slideAtual < 0) slideAtual = totalSlides - 1;
+    mostrarSlide(slideAtual);
+  }
 </script>

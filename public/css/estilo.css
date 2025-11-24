@@ -282,78 +282,58 @@ main {
 /* carrossel */
 .carrossel {
     position: relative;
-    /*background-image: url(/public/assets/img/skyrimIcon.png);*/
-    background-position: 50% 25%;
-    background-repeat: no-repeat;
-    background-size: 40%;
-    color: white;
     text-align: center;
-    overflow: hidden;
-    padding: 60px 50px;
-
-}
-
-
-
-.carrossel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
+    padding: 50px 0;
+    background: black;
+    color: white;
 }
 
 .slide {
-    min-width: 100%;
-    transition: opacity 0.5s ease-in-out;
+    display: block; /* O JS altera isso */
 }
 
 .slide img {
     width: 60%;
     max-height: 800px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .slide p {
     font-size: 28px;
     margin-top: 20px;
-    text-shadow: 0 0 5px black;
 }
 
-/* Botões */
-.prev,
-.next {
+/* --- BOTÕES --- */
+
+.btn-carrossel {
     position: absolute;
-    top: 35%;
-    background: rgba(0, 0, 0, 0);
-    color: white;
-    font-size: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 55px;
+    background: rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.75);
     border: none;
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
-.prev:hover,
-.next:hover {
-    transform: scale(1.2);
+.btn-carrossel:hover {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    transform: translateY(-50%) scale(1.15);
 }
 
-.prev {
-    left: 50px;
+/* Esquerda e direita */
+.btn-esq {
+    left: 40px;
 }
 
-.next {
-    right: 50px;
+.btn-dir {
+    right: 40px;
 }
-
-.carrossel hr {
-    display: flex;
-    width: 1000px;
-    justify-self: center;
-
-}
-
 /* fim do mundo kkkkkkkkkkkkkk */
 
 .guerra-section {
@@ -494,7 +474,8 @@ main {
 }
 
 .dragonborn-section p {
-    text-shadow: 0 0 2px black;
+    color: #0F0701;
+    text-shadow: 0 0 px black;
 }
 
 .dragonborn-bg {
@@ -545,19 +526,19 @@ main {
 }
 
 .compimg {
-    margin-top: 280px;
-    width: 230px;
-    display: flex;
-    justify-self: right;
-    margin-right: 200px;
+    width: 400px;
+    margin-left: auto; /* joga pra direita */
+    margin-right: 100px;
+    margin-top: -390px;
+    display: block;
 }
 
 .winterimg {
     width: 400px;
-    display: flex;
-    justify-self: right;
+    margin-left: auto; /* joga pra direita */
     margin-right: 100px;
     margin-top: -390px;
+    display: block;
 }
 
 .bold {

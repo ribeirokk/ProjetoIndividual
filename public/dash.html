@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -33,7 +33,7 @@
     <div class="lateral">
       <div class="nav-action">
         <h2>Olá, <span id="nome_usuario"></span></h2>
-        <img class="nav-img" src="./assets/img/cadastro/imperial.jpg" alt="icon imperial">
+        <img class="nav-img" id="img_raca" src="" alt="Foto da Raça">
       </div>
 
       <!--       <h2>Câmara 1 <br> <br>Sensor selecionado:</h2>
@@ -450,4 +450,8 @@
   const idUsuario = sessionStorage.ID_USUARIO;
   buscarDadosUsuario(idUsuario);
 };
+
+      const raca = sessionStorage.RACA_USUARIO;
+      document.getElementById("img_raca").src = `../assets/img/cadastro/${raca}.jpg`;
+
     </script>

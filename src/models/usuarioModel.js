@@ -4,7 +4,16 @@ var database = require("../database/config")
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL para autenticar");
     var instrucaoSql = `
-        SELECT id, nome, email FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+            SELECT 
+        u.id,
+        u.nome,
+        u.email,
+        a.raca,
+        a.faccao
+    FROM usuario u
+    JOIN atributos a ON a.fkUsuario = u.id
+    WHERE u.email = '${email}' 
+      AND u.senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
