@@ -53,59 +53,61 @@
       <div class="info">
         <div class="box">
           <p>Partidas Jogadas</p>
-          <p id="p_classeMaisUsada" class="metrica">---</p>
+          <p id="p_partidasJogadas" class="metrica">---</p>
         </div>
         <div class="box">
           <p>Partidas Ganhas</p>
-          <p id="p_magiaMaisUsada" class="metrica">---</p>
+          <p id="p_partidasGanhas" class="metrica">---</p>
         </div>
         <div class="box">
           <p>Aproveitamento </p>
-          <p id="p_racaPredominante" class="metrica">---</p>
+          <p id="p_aproveitamento" class="metrica">---</p>
         </div>
       </div>
 
 
       <div class="graficos">
-        <div class="grafico-grande"><canvas id="grafico_build"></canvas></div>      
-        <div class="grafico"><canvas id="grafico_raca"></canvas></div>
+        <div class="grafico"><canvas id="grafico_vitoriaderrota"></canvas></div>
+        <div class="grafico-grande"><canvas id="graficoTentativasPartida"></canvas></div> 
       </div>
 
     </div>
   </div>
 
   <!--footer inicio-->
-<footer>
-  <div class="footer-container">
+  <footer>
+    <div class="footer-container">
 
-    <div class="facecard">
-      <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
-      <div>
-        <h1>Luiz Vittor Marques Ribeiro</h1>
-        <p>
-          Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
-        </p>
+      <div class="facecard">
+        <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
+        <div>
+          <h1>Luiz Vittor Marques Ribeiro</h1>
+          <p>
+            Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
+          </p>
+        </div>
+      </div>
+      <div class="redes-sociais">
+        <a href="https://www.linkedin.com" target="_blank">
+          <img src="./assets/img/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com" target="_blank">
+          <img src="./assets/img/github.webp" alt="GitHub" />
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png"
+            alt="instagram" />
+        </a>
+        <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome"
+          target="_blank">
+          <img src="./assets/img/bethesda.webp" alt="GitHub" />
+        </a>
       </div>
     </div>
-    <div class="redes-sociais">
-      <a href="https://www.linkedin.com" target="_blank">
-        <img src="./assets/img/linkedin.png" alt="LinkedIn" />
-      </a>
-      <a href="https://github.com" target="_blank">
-        <img src="./assets/img/github.webp" alt="GitHub" />
-      </a>
-      <a href="https://instagram.com" target="_blank">
-        <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png" alt="instagram" />
-      </a>
-      <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome" target="_blank">
-        <img src="./assets/img/bethesda.webp" alt="GitHub" />
-      </a>
-    </div>
-  </div>
-  <p id="copyright">
-    “May the divines guide you.” — Skyrim © 2025 Bethesda
-  </p>
-</footer>
+    <p id="copyright">
+      “May the divines guide you.” — Skyrim © 2025 Bethesda
+    </p>
+  </footer>
 
   <div id="popup" class="popup" style="display: none;">
     <div class="popup-content">
@@ -118,113 +120,10 @@
 
     <script>
 
-      function racaPredominante() {
-        fetch(`/usuarios/racaPredominante/`, {
-          method: "GET",
-        })
-          .then(function (resposta) {
+      PartidasJogadas();
+      PartidasGanhas();
+      Aproveitamento();
 
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-              resposta.json().then(function (data) {
-                p_racaPredominante.innerHTML = data.raca
-              }
-              );
-            }
-          }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-          });
-
-      }
-      racaPredominante()
-
-      function soldadosImperiais() {
-        fetch(`/usuarios/soldadosImperiais/`, {
-          method: "GET",
-        })
-          .then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_imperio.innerHTML = data.faccao
-            }
-          );
-        }
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-      
-    }
-    soldadosImperiais();
-      
-      function soldadosStormcloaks() {
-        fetch(`/usuarios/soldadosStormcloaks/`, {
-          method: "GET",
-        })
-          .then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_stormcloaks.innerHTML = data.faccao
-            }
-          );
-        }
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-      
-    }
-    soldadosStormcloaks();
-    
-    
-    function classeMaisUsada() {
-      fetch(`/usuarios/classeMaisUsada/`, {
-        method: "GET",
-      })
-      .then(function (resposta) {
-        
-        console.log("resposta: ", resposta);
-        
-        if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_classeMaisUsada.innerHTML = data.classe
-            }
-            );
-          }
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-        
-      }
-      classeMaisUsada();
-      
-      function magiaMaisUsada() {
-        fetch(`/usuarios/magiaMaisUsada/`, {
-          method: "GET",
-        })
-        .then(function (resposta) {
-          
-          console.log("resposta: ", resposta);
-          
-          if (resposta.ok) {
-            resposta.json().then(function (data) {
-              p_magiaMaisUsada.innerHTML = data.magia
-            }
-            );
-          }
-        }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-        
-      }
-      magiaMaisUsada();
-      
-      
       function voltarHome() {
         window.location.href = "index.html";
       }
@@ -232,64 +131,170 @@
       function voltarDashboard() {
         window.location.href = "skyrimdle.html";
       };
-      
+
       function abrirPopup(msg) {
         document.getElementById("popup-msg").innerHTML = msg;
         document.getElementById("popup").style.display = "flex";
       };
-      
+
       function fecharPopup() {
         document.getElementById("popup").style.display = "none";
       };
-      
-      nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
-      
-      
-  const ctxBuild = document.getElementById('grafico_build').getContext('2d');
 
-  const graficoBuild = new Chart(ctxBuild, {
-    type: 'bar',
+      nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
+
+
+      function PartidasJogadas() {
+        fetch(`/partida/partidasJogadas/${sessionStorage.ID_USUARIO}`)
+          .then(res => res.json())
+          .then(dados => {
+            p_partidasJogadas.innerHTML = dados.partidasJogadas;
+          });
+      }
+
+      function PartidasGanhas() {
+        fetch(`/partida/partidasGanhas/${sessionStorage.ID_USUARIO}`)
+          .then(res => res.json())
+          .then(dados => {
+            p_partidasGanhas.innerHTML = dados.partidasGanhas;
+          });
+      }
+
+      function Aproveitamento() {
+        fetch(`/partida/aproveitamento/${sessionStorage.ID_USUARIO}`)
+          .then(res => res.json())
+          .then(dados => {
+            p_aproveitamento.innerHTML = dados.aproveitamento + "%";
+          });
+      }
+
+      function obterDadosGrafico() {
+        var fkUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/partida/obterDadosGrafico/${fkUsuario}`)
+          .then(response => response.json())
+          .then(function (response) {
+            console.log('to dentro do grafico', response)
+
+            console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+
+            plotarGrafico(response);
+
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+          });
+      }
+
+      obterDadosGrafico();
+
+
+      function plotarGrafico(resultado) {
+        console.log(resultado)
+        resultado.reverse();
+        var labels = [];
+        var tentativas = [];
+
+        for (var i = 0; i < resultado.length; i++) {
+          labels.push(`Partida ${labels.length + 1}`);
+          tentativas.push(resultado[i].tentativasUsadas);
+        }
+
+        var dados = {
+          labels: labels,
+          datasets: [{
+            label: 'Tentativas',
+            data: tentativas,
+            backgroundColor: 'darkred'
+          }]
+        };
+
+        const ctx = document.getElementById('graficoTentativasPartida');
+
+        const config = {
+          type: 'bar',
+          data: dados,
+          options: {
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#ffff'
+                }
+              }
+            },
+            scales: {
+              x: {
+                ticks: {
+                  color: '#ffff'
+                }
+              },
+              y: {
+                ticks: {
+                  color: '#ffff'
+                }
+              }
+            }
+          }
+        };
+
+        var myChart = new Chart(ctx, config);
+      }
+
+function vitoriaDerrota() {
+  const id = sessionStorage.ID_USUARIO;
+
+  fetch(`/partida/partidasJogadas/${id}`)
+    .then(res => res.json())
+    .then(dadosJogadas => {
+
+      const totalJogadas = dadosJogadas.partidasJogadas;
+
+      fetch(`/partida/partidasGanhas/${id}`)
+        .then(res => res.json())
+        .then(dadosGanhas => {
+
+          const totalGanhas = dadosGanhas.partidasGanhas;
+          const totalDerrotas = totalJogadas - totalGanhas;
+
+          plotarPizza(totalGanhas, totalDerrotas);
+
+        });
+
+    })
+    .catch(err => console.error("Erro no gráfico de pizza:", err));
+}
+
+vitoriaDerrota();
+
+function plotarPizza(vitorias, derrotas) {
+  const ctx = document.getElementById('grafico_vitoriaderrota');
+
+  new Chart(ctx, {
+    type: 'pie',
     data: {
-      labels: ['Guerreiro', 'Mago', 'Arqueiro', 'Assassino', 'Tank', 'Curandeiro'],
+      labels: ['Vitórias  ', 'Derrotas'],
       datasets: [{
-        label: 'Popularidade das Builds',
-        data: [14, 22, 18, 10, 7, 12],
-        borderWidth: 1
+        data: [vitorias, derrotas],
+        backgroundColor: ['white', 'black']
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
+      plugins: {
+        legend: {
+          labels: { color: '#fff' }
         }
       }
     }
   });
-
-  const ctxRaca = document.getElementById('grafico_raca').getContext('2d');
-
-  const graficoRaca = new Chart(ctxRaca, {
-    type: 'doughnut',
-    data: {
-      labels: ['Nórdico', 'Elfo Superior', 'Khajiit', 'Orc', 'Argoniano'],
-      datasets: [{
-        data: [35, 20, 15, 10, 20]
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  });
-
-function dashDLE() {
-    window.location.href = "dashDLE.html"; 
 }
 
-function dashMundo() {
-    window.location.href = "dash.html"; 
-}
+      function dashDLE() {
+        window.location.href = "dashDLE.html";
+      }
 
-      </script>
+      function dashMundo() {
+        window.location.href = "dash.html";
+      }   
+
+  
+    </script>

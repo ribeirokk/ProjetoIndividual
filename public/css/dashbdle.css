@@ -409,24 +409,14 @@ select {
     color: #1e4d92;
 }
 
-
-.graficos {
-    margin-top: 20px;
+.graficos canvas{
     display: flex;
-    gap: 60px;
-}
-
-.grafico {
-    width: 50%;
-    height: 360px;
+    justify-content: space-between;
 }
 
 .grafico-grande {
-    width: 600px;
-    height: 450px;
+    width: 1200px;
 }
-
-
 
 .escolha {
     display: flex;

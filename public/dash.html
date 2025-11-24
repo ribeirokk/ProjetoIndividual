@@ -257,10 +257,10 @@
 
       nome_usuario.innerText = sessionStorage.getItem("NOME_USUARIO");
 
-        function obterFaccao() {
+      function obterFaccao() {
         fetch(`/partida/obterFaccao/`, {
         })
-          .then(function (resposta) { 
+          .then(function (resposta) {
 
             console.log("resposta: ", resposta);
 
@@ -286,30 +286,36 @@
         for (var i = 0; i < dadosFaccao.length; i++) {
           var faccaoJson = dadosFaccao[i].faccao;
           var faccaoQuantidadeJson = dadosFaccao[i].quantidade_repeticoes;
-          faccaoLabel.push( faccaoJson );
-          faccaoData.push( faccaoQuantidadeJson );
+          faccaoLabel.push(faccaoJson);
+          faccaoData.push(faccaoQuantidadeJson);
         }
-        
-        
+
+
         var dadosGrafico = {
           labels: faccaoLabel,
           datasets: [{
-          label: 'Imperio',
-            data: faccaoData
+            label: 'Fação dos Jogadores',
+            data: faccaoData,
+            backgroundColor: [
+              "rgba(0, 191, 255, 0.8)", // Stormcloak
+              "rgb(139, 0, 0)",      // Imperial
+            ],
+            borderColor: "#ffffff",
+            borderWidth: 2,
           }]
         }
 
-      const configGrafico = {
-        type: 'bar',
-        data: dadosGrafico,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      };
+        const configGrafico = {
+          type: 'bar',
+          data: dadosGrafico,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
+          }
+        };
         const id_grafico = document.getElementById("grafico_faccao")
 
-        const graficoFaccao = new Chart (id_grafico, configGrafico)
+        const graficoFaccao = new Chart(id_grafico, configGrafico)
       }
 
       function obterClasse() {
@@ -352,7 +358,12 @@
           datasets: [{
             label: 'Popularidade das Builds',
             data: classeData,
-            borderWidth: 1
+            backgroundColor: [
+              "rgba(0, 191, 255, 0.8)", 
+              "rgb(139, 0, 0)",    
+            ],
+            borderColor: "#ffffff",
+            borderWidth: 2,
           }]
         }
         const configGrafico = {
@@ -370,14 +381,14 @@
         };
         const id_grafico = document.getElementById("grafico_build")
 
-        const graficoClasse = new Chart (id_grafico, configGrafico)
+        const graficoClasse = new Chart(id_grafico, configGrafico)
       }
 
 
       function obterRaca() {
         fetch(`/partida/obterRaca/`, {
         })
-          .then(function (resposta) { 
+          .then(function (resposta) {
 
             console.log("resposta: ", resposta);
 
@@ -403,11 +414,11 @@
         for (var i = 0; i < dadosRaca.length; i++) {
           var racaJson = dadosRaca[i].raca;
           var racaQuantidadeJson = dadosRaca[i].quantidade_repeticoes;
-          racaLabel.push( racaJson );
-          racaData.push( racaQuantidadeJson );
+          racaLabel.push(racaJson);
+          racaData.push(racaQuantidadeJson);
         }
-        
-        
+
+
         var dadosGrafico = {
           labels: racaLabel,
           datasets: [{
@@ -415,17 +426,17 @@
           }]
         }
 
-      const configGrafico = {
-        type: 'pie',
-        data: dadosGrafico,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      };
+        const configGrafico = {
+          type: 'pie',
+          data: dadosGrafico,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
+          }
+        };
         const id_grafico = document.getElementById("grafico_raca")
 
-        const graficoRaca = new Chart (id_grafico, configGrafico)
+        const graficoRaca = new Chart(id_grafico, configGrafico)
       }
       function dashDLE() {
         window.location.href = "dashDLE.html";
@@ -434,4 +445,9 @@
       function dashMundo() {
         window.location.href = "dash.html";
       } 
+      
+      window.onload = () => {
+  const idUsuario = sessionStorage.ID_USUARIO;
+  buscarDadosUsuario(idUsuario);
+};
     </script>
