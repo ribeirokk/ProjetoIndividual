@@ -7,6 +7,8 @@
   <title>Skyrim - Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="./css/dashbdle.css">
+  <link rel="icon" href="./assets/img/skyrimIcon.png" />
+
 </head>
 
 <body>
@@ -33,7 +35,8 @@
     <div class="lateral">
       <div class="nav-action">
         <h2>Olá, <span id="nome_usuario"></span></h2>
-        <img class="nav-img" id="img_raca" src="" alt="Foto da Raça">
+        <img style="width: 80px; height: 80px;" class="nav-img" id="img_raca" src="" alt="Foto da Raça">
+
 
       </div>
 
@@ -278,7 +281,7 @@
             labels: ['Vitórias  ', 'Derrotas'],
             datasets: [{
               data: [vitorias, derrotas],
-              backgroundColor: ['white', 'black']
+              backgroundColor: ['darkred', '#2c2c2c']
             }]
           },
           options: {

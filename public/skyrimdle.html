@@ -43,22 +43,16 @@
             <div class="dle-logo"><img src="./assets/img/tela-dle.png" alt=""></div>
 
 
+            <p class="p-logo" id="p_bemvindo">Bem Vindo de Volta! O que deseja fazer?</p>
             <div id="botao_quiz" class="botao-quiz">
-
-
-                <h1></h1>
                 <div class="botoes">
                     <button onclick="jogar()">Jogar</button>
                     <a href="dash.html"><button>Seus dados</button></a>
                 </div>
-
             </div>
 
             <div id="quiz" class="quiz" style="display: none;">
-
                 <h2>Adivinhe o personagem!</h2>
-
-
                 <div class="input-area">
                     <input oninput="validar()" type="text" id="input_personagem"
                         placeholder="Escreva o nome do personagem">
@@ -97,38 +91,40 @@
         </div>
 
     </div>
-    
-<footer>
-  <div class="footer-container">
 
-    <div class="facecard">
-      <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
-      <div>
-        <h1>Luiz Vittor Marques Ribeiro</h1>
-        <p>
-          Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
+    <footer>
+        <div class="footer-container">
+
+            <div class="facecard">
+                <img src="./assets/img/face.png" alt="Foto do desenvolvedor" />
+                <div>
+                    <h1>Luiz Vittor Marques Ribeiro</h1>
+                    <p>
+                        Desenvolvedor do projeto — forjado na disciplina de PI na SPTECH.
+                    </p>
+                </div>
+            </div>
+            <div class="redes-sociais">
+                <a href="https://www.linkedin.com" target="_blank">
+                    <img src="./assets/img/linkedin.png" alt="LinkedIn" />
+                </a>
+                <a href="https://github.com" target="_blank">
+                    <img src="./assets/img/github.webp" alt="GitHub" />
+                </a>
+                <a href="https://instagram.com" target="_blank">
+                    <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png"
+                        alt="instagram" />
+                </a>
+                <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome"
+                    target="_blank">
+                    <img src="./assets/img/bethesda.webp" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+        <p id="copyright">
+            “May the divines guide you.” — Skyrim © 2025 Bethesda
         </p>
-      </div>
-    </div>
-    <div class="redes-sociais">
-      <a href="https://www.linkedin.com" target="_blank">
-        <img src="./assets/img/linkedin.png" alt="LinkedIn" />
-      </a>
-      <a href="https://github.com" target="_blank">
-        <img src="./assets/img/github.webp" alt="GitHub" />
-      </a>
-      <a href="https://instagram.com" target="_blank">
-        <img style="width: 62px; margin-top: -1px; margin-left: -6px;" src="./assets/img/instagram.png" alt="instagram" />
-      </a>
-      <a href="https://bethesda.net/pt/article/2zwwDBsILjpuGfKfTw4gx2/the-elder-scrolls-v-skyrim-welcome" target="_blank">
-        <img src="./assets/img/bethesda.webp" alt="GitHub" />
-      </a>
-    </div>
-  </div>
-  <p id="copyright">
-    “May the divines guide you.” — Skyrim © 2025 Bethesda
-  </p>
-</footer>
+    </footer>
 
     <div id="popup" class="popup" style="display: none;">
         <div class="popup-content">
@@ -601,20 +597,22 @@
     }
     function tentar() {
         var tentativa = input_personagem.value.toLowerCase();
-        tentativas++;
 
-        var comparar = personagens.find(function (personagemAtual) {
-            return personagemAtual.nome.toLowerCase() == tentativa;
-        });
-
+        for (var i = 0; i < personagens.length; i++) {
+            if (personagens[i].nome.toLowerCase() == tentativa) {
+                var comparar = personagens[i];
+                tentativas++;
+            }
+        }
         if (!comparar) {
             alert("Personagem inválido!");
             return;
         }
 
-        if (comparar.nome == personagem.nome) {
-            ganhou = true;
+        if (comparar == personagem) {
+            venceu = 1;
         }
+
 
         function compararCampo(campo, elemento) {
             elemento.innerHTML = comparar[campo];
@@ -674,6 +672,7 @@
     function jogar() {
         personagem = personagens[Math.floor(Math.random() * personagens.length)];
         quiz.style.display = "block";
+        p_bemvindo.style.display = 'none';
         botao_quiz.style.display = "none";
     }
 
@@ -694,7 +693,6 @@
     }
 
     function desistir() {
-
         fetch("/partida/registrar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -704,9 +702,12 @@
                 venceu: 0
             })
         });
-
+        p_bemvindo.style.display = 'block';
         quiz.style.display = "none";
         botao_quiz.style.display = "block";
+        tentativas = 0;
+        historico.innerHTML = "";
+        ganhou = false;
     }
 
 
@@ -719,7 +720,6 @@
     function fecharPopup() {
         document.getElementById("popup").style.display = "none";
 
-        // Reinicia jogo
         botao_quiz.style.display = "flex";
         quiz.style.display = "none";
         tentativas = 0;

@@ -215,6 +215,7 @@ footer {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    margin-top: 50px;
     transition: 1s;
 }
 

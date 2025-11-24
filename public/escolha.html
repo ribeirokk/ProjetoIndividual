@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Escolha sua Facção</title>
-<link rel="stylesheet" href="./css/escolha.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolha sua Facção</title>
+    <link rel="stylesheet" href="./css/escolha.css">
+    <link rel="icon" href="./assets/img/skyrimIcon.png" />
+
 </head>
+
 <body>
     <!--header inicio-->
     <header>
         <nav>
             <a class="logo" href="/">Skyrim</a>
-            
+
             <ul class="nav-list">
             </ul>
 
@@ -25,28 +30,29 @@
         </nav>
     </header>
     <!--header fim-->
-<div class="container">
-    
-    <div class="lado imperio" onclick="escolher('Imperio')">
-        
-        <p>| IMPÉRIO</p>
-        <img class="nav-img" src="./assets/img/imperioIcon.png" alt="icon imperial">
-    </div>
+    <div class="container">
 
-    <div class="lado storm" onclick="escolher('Stormcloaks')">
-        <p>| STORMCLOAKS</p>
-         <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
-    </div>
+        <div class="lado imperio" onclick="escolher('Imperio')">
 
-</div>
+            <p>| IMPÉRIO</p>
+            <img class="nav-img" src="./assets/img/imperioIcon.png" alt="icon imperial">
+        </div>
+
+        <div class="lado storm" onclick="escolher('Stormcloaks')">
+            <p>| STORMCLOAKS</p>
+            <img class="nav-img" src="./assets/img/stormcloakIcon.png" alt="icon stormcloak">
+        </div>
+
+    </div>
 
 
 </body>
+
 </html>
 
 <script>
-function escolher(faccao) {
-    sessionStorage.setItem("faccaoEscolhida", faccao);
-    window.location.href = "cadastro.html"; 
-}
+    function escolher(faccao) {
+        sessionStorage.setItem("faccaoEscolhida", faccao);
+        window.location.href = "cadastro.html";
+    }
 </script>

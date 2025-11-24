@@ -11,8 +11,8 @@ function registrar(idUsuario, tentativas, venceu) {
 function obterClasse() {
     console.log("ACESSEI");
     var instrucaoSql = `
-        SELECT classe as classe, COUNT(classe) AS quantidade_repeticoes 
-        FROM atributos GROUP BY classe  ORDER BY quantidade_repeticoes;
+        SELECT classe as classe, COUNT(classe) as quantidade_repeticoes 
+        FROM atributos GROUP BY classe ORDER BY quantidade_repeticoes;
         `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -41,8 +41,7 @@ function obterFaccao() {
 function obterDadosGrafico(fkUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", fkUsuario)
     var instrucaoSql = `
-        SELECT tentativasUsadas
-        FROM partida
+        SELECT tentativasUsadas FROM partida
         WHERE fkUsuario = ${fkUsuario}
         ORDER BY id DESC LIMIT 10;
     `;
@@ -52,8 +51,7 @@ function obterDadosGrafico(fkUsuario) {
 
 function partidasJogadas(fkUsuario) {
     var instrucaoSql = `
-        SELECT COUNT(*) AS partidasJogadas
-        FROM partida
+        SELECT COUNT(*) AS partidasJogadas FROM partida
         WHERE fkUsuario = ${fkUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -62,8 +60,7 @@ function partidasJogadas(fkUsuario) {
 
 function partidasGanhas(fkUsuario) {
     var instrucaoSql = `
-        SELECT COUNT(*) AS partidasGanhas
-        FROM partida
+        SELECT COUNT(*) AS partidasGanhas FROM partida
         WHERE fkUsuario = ${fkUsuario} AND venceu = 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -72,8 +69,7 @@ function partidasGanhas(fkUsuario) {
 
 function partidasPerdidas(fkUsuario) {
     var instrucaoSql = `
-        SELECT COUNT(*) AS partidasPerdidas
-        FROM partida
+        SELECT COUNT(*) AS partidasPerdidas FROM partida
         WHERE fkUsuario = ${fkUsuario} AND venceu = 0;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -82,11 +78,7 @@ function partidasPerdidas(fkUsuario) {
 
 function aproveitamento(fkUsuario) {
     var instrucaoSql = `
-        SELECT 
-            ROUND(
-                (SUM(CASE WHEN venceu = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100,
-                2
-            ) AS aproveitamento
+        SELECT ROUND((SUM(CASE WHEN venceu = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100,2) AS aproveitamento
         FROM partida
         WHERE fkUsuario = ${fkUsuario};
     `;
@@ -96,9 +88,9 @@ function aproveitamento(fkUsuario) {
 
 function vitoriasDerrotas(idUsuario) {
     var instrucaoSql = `
-        SELECT 
-            SUM(CASE WHEN ganhou = 1 THEN 1 ELSE 0 END) AS vitorias,
-            SUM(CASE WHEN ganhou = 0 THEN 1 ELSE 0 END) AS derrotas
+        SELECT S
+        UM(CASE WHEN ganhou = 1 THEN 1 ELSE 0 END) AS vitorias,
+        SUM(CASE WHEN ganhou = 0 THEN 1 ELSE 0 END) AS derrotas
         FROM partida
         WHERE fkUsuario = ${idUsuario};
     `;
